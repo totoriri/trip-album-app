@@ -1,5 +1,10 @@
-import * as firebase from "firebase/app";
-import "firebase/auth";
+
+// import * as firebase from "firebase/app";
+// import "firebase/auth";
+// import "firebase/storage"
+
+// this is the best way to import firebase for now.
+import firebase from 'firebase'
 
 export const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
