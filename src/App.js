@@ -37,7 +37,7 @@ const App = () => {
             albums.map(album => (
               <div key={album.name}>
                 <h1>{album.name}</h1>
-                <img src={album.image} alt/>
+                <img src={album.image} alt=""/>
             </div>
             ))
           }
