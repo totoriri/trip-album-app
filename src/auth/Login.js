@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 
 const Login = ({ history }) => {
@@ -24,6 +25,7 @@ const Login = ({ history }) => {
           <input name="password" type="password" placeholder="Password" />
         </label>
         <button type="submit">Log in</button>
+        <Link to="/signup">Go to signup page</Link>
       </form>
     </div>
   );
