@@ -19,7 +19,8 @@ const App = () => {
       const tempAlbums = [];
       snapshot.forEach((doc) => {
         // set the id for passing data as path
-        tempAlbums.push({...doc.data(),id:doc.id });
+        tempAlbums.push({ ...doc.data(), id: doc.id });
+        console.log({...doc.data()})
       })
       setAlbums(tempAlbums);
       // {name:"shoes",id:"shoes"}
@@ -34,10 +35,8 @@ const App = () => {
           <PrivateRoute exact path="/" albums={albums} component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-
           {/* <Route path={`/${album.id}`} component={Album}/> */}
           <Route path="/:album" component={Album}/>
-
         </Switch>
       </Router>
     </AuthProvider>

@@ -17,7 +17,7 @@ export const NewPhoto = ({currentAlbum}) => {
     const fileRef = storageRef.child(file.name)
     await fileRef.put(file)
     db.collection("albums").doc(currentAlbum).update({
-      images: firebase.firestore.FieldValue.arrayUnion({
+        images: firebase.firestore.FieldValue.arrayUnion({
         name: file.name,
         url: await fileRef.getDownloadURL()
       })

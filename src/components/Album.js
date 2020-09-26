@@ -1,43 +1,3 @@
-// import React, { useState, useEffect } from "react"
-// import {useRouteMatch} from "react-router-dom"
-// import { NewPhoto } from "./NewPhoto"
-// import {app } from "../base"
-
-// const db = app.firestore();
-
-// export const Album = () => {
-//   const [images, setImages] = useState([]);
-
-//   const match = useRouteMatch("/:album")
-//   const { album } = match.params
-
-//   useEffect(() => {
-//     db.collection("albums").doc(album).onSnapshot((doc) => {
-//       // const images = doc.data().images
-//       setImages(doc.data().images);
-//       console.log(images)
-//     }, [])
-//   })
-
-
-//     return (
-//       <div>
-//         {/* this map is for displaying albums */}
-//         {
-//           images.map(image => (
-//             // <Link to={`/${album.id}`}>
-//             <div key={image.name}>
-//               <h1>{image.name}</h1>
-//               <img src={image.url} alt="" />
-//             </div>
-//             // </Link>
-//           ))
-//         }
-//         <NewPhoto currentAlbum={album} />
-//       </div>
-//     )
-//   }
-
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
 import { NewPhoto } from "./NewPhoto";
@@ -49,17 +9,20 @@ export const Album = () => {
   const [images, setImages] = useState([]);
   const [albumName, setAlbumName] = useState("");
 
+  // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/:album");
+  console.log(match)
   const { album } = match.params;
+  console.log(match)
 
   useEffect(() => {
-    const unmount = db.collection("albums")
+      db.collection("albums")
       .doc(album)
       .onSnapshot((doc) => {
         setImages(doc.data().images || []);
         setAlbumName(doc.data().name);
+        console.log(doc.data().images)
       });
-      return unmount
   }, []);
 
   return (
@@ -70,9 +33,9 @@ export const Album = () => {
           <p>Go to the <Link to="/">Home page</Link></p>
         </header>
         {images.map((image) => (
-          <aside key={image.name}>
-            <img src={image.url} alt="album" />
-          </aside>
+          <div key={image.name}>
+            <img style={{width:"50%",height:"50%"}} src={image.url} alt="album" />
+          </div>
         ))}
       </section>
       <footer>
