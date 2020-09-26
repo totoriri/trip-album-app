@@ -9,8 +9,7 @@ const PrivateRoute = ({ component: RouteComponent, ...options }) => {
   const Component = currentUser ? RouteComponent : Login;
 
   // return <Route {...options} component={Component} />;
-  // 自作したやつ
-  return <Route {...options} render={(props) => <Component {...props}{...options} />}/>
+  return <Route {...options} render={() => <Component {...options} />}/>
 };
 
 export default PrivateRoute;

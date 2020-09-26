@@ -5,6 +5,7 @@ import NewAlbumForm from "./NewAlbumForm"
 
 const Home = (props) => {
   const { albums } = props;
+
   return (
     <div>
       <h2>Home Page</h2>

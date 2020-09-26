@@ -32,13 +32,12 @@ const App = () => {
       <Router>
         <Switch>
           <PrivateRoute exact path="/" albums={albums} component={Home} />
-          {/* <PrivateRoute exact path="/" albums={albums} component={() => <Home/>} /> */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
 
-          {
-            albums.map((album) => <Route path={`/${album.id}`} component={Album}/>)
-          }
+          {/* <Route path={`/${album.id}`} component={Album}/> */}
+          <Route path="/:album" component={Album}/>
+
         </Switch>
       </Router>
     </AuthProvider>
