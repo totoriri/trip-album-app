@@ -70,7 +70,7 @@ const Home = (props) => {
                       </div>
                     <CardMedia
         className={classes.cover}
-        image="http://placekitten.com/g/200/300" alt=""
+        image={album.images ? album.images[0].url : ""} alt="album"
                       title="Live from space album cover"
       />
                 </Card>

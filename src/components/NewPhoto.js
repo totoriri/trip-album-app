@@ -46,9 +46,8 @@ export const NewPhoto = ({currentAlbum}) => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <form  className={classes.form}>
-    {/* <input type="file" onChange={onFileChange}/>
-    <button onClick={onUpload}>Upload image</button> */}
+    {/* <input type="file" onChange={onFileChange}/> */}
+    {/* <button onClick={onUpload}>Upload image</button> */}
       <TextField
         variant="outlined"
         onChange={onFileChange}
@@ -60,17 +59,16 @@ export const NewPhoto = ({currentAlbum}) => {
             type="file"
             id="file"
             />
-          {/* <button type="submit">Log in</button> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
-            className={classes.submit}
+          className={classes.submit}
+          onClick={onUpload}
             >
-            Log In
+            Upload Image
             </Button>
-            </form>
     </Container>
   )
 }
