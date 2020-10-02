@@ -3,9 +3,31 @@ import { useRouteMatch, Link } from "react-router-dom";
 import { NewPhoto } from "./NewPhoto";
 import { app } from "../base";
 
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 const db = app.firestore();
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  root: {
+    marginTop: "30px"
+  }
+}))
+
 export const Album = () => {
+
+  const classes = useStyles();
   const [images, setImages] = useState([]);
   const [albumName, setAlbumName] = useState("");
 
@@ -26,21 +48,33 @@ export const Album = () => {
   }, []);
 
   return (
-    <>
-      <section>
+    <Container component="main">
+      <section className={classes.paper}>
         <header>
-          <h1>{albumName}</h1>
-          <p>Go to the <Link to="/">Home page</Link></p>
+          <Typography component="h1" variant="h3">{albumName}</Typography>
+          <Typography component="body" variant="body">Go to the <Link to="/">Home page</Link></Typography>
         </header>
+        <Grid container spacing={10} justify="center" className={classes.root}>
         {images.map((image) => (
-          <div key={image.name}>
-            <img style={{width:"50%",height:"50%"}} src={image.url} alt="album" />
-          </div>
+          <Grid item　xs={3}  key={image.name}>
+            <Card>
+              {/* <img src={image.url} alt="album" /> */}
+              <CardMedia
+                  component="img"
+                  alt="Contemplative Reptile"
+                height="300"
+                width="auto"
+                  image={image.url}
+                  title="Contemplative Reptile"
+                />
+            </Card>
+          </Grid>
         ))}
+        </Grid>
       </section>
       <footer>
         <NewPhoto currentAlbum={album} />
       </footer>
-    </>
+    </Container>
   );
 };
