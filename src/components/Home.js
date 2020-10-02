@@ -48,7 +48,7 @@ const Home = (props) => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-      <Typography component="h1" variant="h5">Home Page</Typography>
+      <Typography component="h1" variant="h4">Albums</Typography>
       <button onClick={() => app.auth().signOut()}>Sign out</button>
 
 
@@ -62,7 +62,7 @@ const Home = (props) => {
                   <Card className={classes.root}>
                     <div className={classes.details}>
                     <CardContent className={classes.content}>
-                  <Typography>{album.name}</Typography>
+                  <Typography component="h1" variant="h5">{album.name}</Typography>
                       {/* <img src={album.image} alt="" /> */}
                       {/* <img src="http://placekitten.com/g/200/300" alt="" />
                     </div> */}
