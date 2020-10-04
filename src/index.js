@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-// import {BrowserRouter} from "react-router-dom"
+import {AuthProvider} from "./auth/AuthProvider"
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <BrowserRouter> */}
+  <AuthProvider>
+      <React.StrictMode>
       <App />
-    {/* </BrowserRouter> */}
-  </React.StrictMode>,
+      </React.StrictMode>
+  </AuthProvider>,
   document.getElementById('root')
 );
 

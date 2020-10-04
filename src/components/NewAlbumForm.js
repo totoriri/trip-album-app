@@ -1,5 +1,6 @@
-import React,{useState} from "react"
+import React,{useState,useContext} from "react"
 import { app } from "../base"
+import { AuthContext } from "../auth/AuthProvider"
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -26,16 +27,23 @@ const NewAlbumForm = () => {
   const classes = useStyles();
 
   const [albumName, setAlbumName] = useState("");
-
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser.uid)
   const onAlbumNameChange = (event) => {
     setAlbumName(event.target.value)
   }
 
   const onAlbumCreate = () => {
     albumName&&
-    db.collection("albums").doc(albumName).set({
+    // db.collection("albums").doc(albumName).set({
+    //   name: albumName
+    // })
+    db.collection("albums").add({
+      uid: currentUser.uid,
+      isComplete: false,
+      createdAt: new Date(),
       name: albumName
-    })
+    });
     // to clear the input
     setAlbumName("")
   }
