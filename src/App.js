@@ -11,6 +11,7 @@ import {Album} from "./components/Album"
 import { AuthContext } from "./auth/AuthProvider"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 const db = app.firestore();
 
@@ -56,7 +57,11 @@ const App = () => {
     // <AuthProvider>
     <Router>
       <AppBar position="static">
-        <Toolbar></Toolbar>
+        <Toolbar>
+        <Link to="/home" style={{ textDecoration: 'none'}}>
+            <Typography variant="h5" color="secondary">Twips</Typography>
+        </Link>
+        </Toolbar>
       </AppBar>
         <Switch>
           <PrivateRoute exact path="/" albums={albums} component={Home} />
