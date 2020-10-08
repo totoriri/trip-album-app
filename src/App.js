@@ -57,13 +57,6 @@ const App = () => {
   return (
     // <AuthProvider>
     <Router>
-      <AppBar position="static">
-        <Toolbar>
-        <Link to="/home" style={{ textDecoration: 'none'}}>
-            <Typography variant="h5" color="secondary">Twips</Typography>
-        </Link>
-        </Toolbar>
-      </AppBar>
       <ClippedDrawer/>
         <Switch>
           <PrivateRoute exact path="/" albums={albums} component={Home} />
