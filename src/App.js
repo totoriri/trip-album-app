@@ -12,7 +12,6 @@ import { AuthContext } from "./auth/AuthProvider"
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import ClippedDrawer from "./components/Drawer.js"
 
 const db = app.firestore();
 
@@ -57,7 +56,6 @@ const App = () => {
   return (
     // <AuthProvider>
     <Router>
-      <ClippedDrawer/>
         <Switch>
           <PrivateRoute exact path="/" albums={albums} component={Home} />
           <Route exact path="/login" component={Login} />
