@@ -1,7 +1,7 @@
 import React,{useState, useEffect,useMemo,useContext} from "react";
 import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
-import { AuthProvider } from "./auth/AuthProvider";
+import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -9,7 +9,7 @@ import Header from "./components/Header.js"
 import { app } from "./base"
 import NewAlbumForm from "./pages/NewAlbumForm"
 import {Album} from "./pages/Album"
-import { AuthContext } from "./auth/AuthProvider"
+import { AuthContext } from "./context/AuthContext"
 
 
 
