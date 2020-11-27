@@ -92,7 +92,6 @@ const Home = (props) => {
           }
           <AddNewAlbumButton/>
           {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
-          <NewAlbumForm/>
       </Grid>
       </div>
     </Container>

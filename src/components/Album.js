@@ -38,7 +38,7 @@ export const Album = () => {
   console.log(match)
 
   useEffect(() => {
-      db.collection("albums")
+       db.collection("albums")
       .doc(album)
       .onSnapshot((doc) => {
         setImages(doc.data().images || []);

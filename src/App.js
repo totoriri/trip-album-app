@@ -12,6 +12,7 @@ import {Album} from "./components/Album"
 import { AuthContext } from "./auth/AuthProvider"
 
 
+
 const db = app.firestore();
 
 const App = () => {
@@ -61,7 +62,8 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           {/* <Route path={`/${album.id}`} component={Album}/> */}
-          <Route path="/:album" component={Album}/>
+        <Route path="/:album" component={Album} />
+        <Route path="/newAlbumForm" component={NewAlbumForm}/>
         </Switch>
       </Router>
     // </AuthProvider>
