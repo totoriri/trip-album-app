@@ -49,6 +49,8 @@ const Home = (props) => {
       <CssBaseline />
       <div className={classes.paper}>
       <Typography component="h1" variant="h4">Albums</Typography>
+      <button onClick={() => app.auth().signOut()}>Sign out</button>
+
 
       {/* previously in App.js */}
         <Grid container className={classes.albums}spacing={3}>
