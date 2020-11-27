@@ -11,6 +11,7 @@ import Grid from "@material-ui/core/Grid"
 import Card from "@material-ui/core/Card"
 import CardMedia from "@material-ui/core/CardMedia"
 import CardContent from "@material-ui/core/CardContent"
+import SearchBar from "../components/SearchBar"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems:"center"
   },
   albums: {
-    marginTop:"15px"
+    marginTop: theme.spacing(20),
+  },
+  pageTitle: {
+    marginTop: theme.spacing(10),
+    textAlign:"center"
+  },
+  homeTop: {
+    // backgroundColor: "lightGray"
   },
   root: {
     display: 'flex',
@@ -45,13 +53,15 @@ const Home = (props) => {
   const { albums } = props;
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
-      <Typography component="h1" variant="h4">Albums</Typography>
-
+        <div className={classes.homeTop}>
+          <Typography className={classes.pageTitle} component="h1" variant="h3">Albums</Typography>
+          <SearchBar />
+        </div>
       {/* previously in App.js */}
-        <Grid container className={classes.albums}spacing={3}>
+        <Grid container maxWidth="xs" justify="center" className={classes.albums} spacing={3}>
         {/* this map is for displaying albums */}
           {
             albums.map(album => (

@@ -34,9 +34,6 @@ export default function MenuListComposition() {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       app.auth().signOut();
     }
-
-
-
     setOpen(false);
   };
 
