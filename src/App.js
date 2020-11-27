@@ -1,17 +1,16 @@
 import React,{useState, useEffect,useMemo,useContext} from "react";
-import { BrowserRouter as Router, Route,Switch,Link } from "react-router-dom";
+import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./auth/AuthProvider";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
+import Header from "./components/Header.js"
 import { app } from "./base"
 import NewAlbumForm from "./components/NewAlbumForm"
 import {Album} from "./components/Album"
 import { AuthContext } from "./auth/AuthProvider"
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 
 const db = app.firestore();
 
@@ -56,6 +55,7 @@ const App = () => {
   return (
     // <AuthProvider>
     <Router>
+        <Header/>
         <Switch>
           <PrivateRoute exact path="/" albums={albums} component={Home} />
           <Route exact path="/login" component={Login} />
