@@ -56,7 +56,7 @@ export const Album = () => {
         </header>
         <Grid container spacing={10} justify="center" className={classes.root}>
         {images.map((image) => (
-          <Grid item　xs={3}  key={image.name}>
+          <Grid item　xs={4}  key={image.name}>
             <Card>
               {/* <img src={image.url} alt="album" /> */}
               <CardMedia

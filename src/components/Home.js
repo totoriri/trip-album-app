@@ -12,7 +12,8 @@ import Card from "@material-ui/core/Card"
 import CardMedia from "@material-ui/core/CardMedia"
 import CardContent from "@material-ui/core/CardContent"
 import SearchBar from "../components/SearchBar"
-
+import AddNewAlbumButton from "../components/AddNewAlbumButton"
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
   cover: {
     width: "100%",
   },
+  addCircleIcon: {
+    width:"300px"
+  }
 }))
 
 const Home = (props) => {
@@ -53,7 +57,7 @@ const Home = (props) => {
   const { albums } = props;
 
   return (
-    <Container component="main">
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.homeTop}>
@@ -77,15 +81,17 @@ const Home = (props) => {
                         </CardContent>
                       </div>
                     <CardMedia
-        className={classes.cover}
-        image={album.images ? album.images[0].url : ""} alt="album"
+                      className={classes.cover}
+                      image={album.images ? album.images[0].url : ""}               alt="album"
                       title="Live from space album cover"
-      />
+                    />
                 </Card>
               </Link>
-                  </Grid>
+            </Grid>
             ))
           }
+          <AddNewAlbumButton/>
+          {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
           <NewAlbumForm/>
       </Grid>
       </div>
