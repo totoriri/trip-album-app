@@ -7,7 +7,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Box from "@material-ui/core/Box"
 import Grid from "@material-ui/core/Grid"
 import Link from "@material-ui/core/Link"
-import {makeStyles,createStyles} from "@material-ui/core/styles"
+import { makeStyles, createStyles } from "@material-ui/core/styles"
+import MenuListComposition from "./MenuListComposition"
 
 const useStyles = makeStyles((theme) => ({
   flex1:{
@@ -38,7 +39,7 @@ const Header = () => {
               {
                 currentUser ?
                 <div className={classes.flex2}>
-                  <Typography>{currentUser.uid}</Typography>
+                <MenuListComposition/>
                   <NotificationsIcon/>
                 </div>
                 :
