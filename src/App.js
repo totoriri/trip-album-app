@@ -2,13 +2,13 @@ import React,{useState, useEffect,useMemo,useContext} from "react";
 import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./auth/AuthProvider";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 import Header from "./components/Header.js"
 import { app } from "./base"
-import NewAlbumForm from "./components/NewAlbumForm"
-import {Album} from "./components/Album"
+import NewAlbumForm from "./pages/NewAlbumForm"
+import {Album} from "./pages/Album"
 import { AuthContext } from "./auth/AuthProvider"
 
 
