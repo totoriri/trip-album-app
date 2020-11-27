@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import { NewPhoto } from "./NewPhoto";
+import { NewPhoto } from "../components/NewPhoto";
 import { app } from "../base";
 
 import { makeStyles } from '@material-ui/core/styles';
