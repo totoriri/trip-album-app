@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  albumTitle: {
+    marginTop:theme.spacing(5)
+  },
   root: {
     marginTop: "30px"
   },
@@ -55,7 +58,7 @@ export const Album = () => {
     <Container component="main">
       <section className={classes.paper}>
         <header>
-          <Typography component="h1" variant="h3">{albumName}</Typography>
+          <Typography className={classes.albumTitle} component="h1" variant="h3">{albumName}</Typography>
         </header>
         <Grid container spacing={10} justify="center" className={classes.root}>
         {images.map((image) => (
