@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
 import { NewPhoto } from "../components/NewPhoto";
 import { app } from "../base";
+import NewPhotoButton from "../components/AddNewPhotoButton"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -22,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     marginTop: "30px"
+  },
+  footer: {
+    textAlign:"center"
   }
 }))
 
@@ -72,7 +76,8 @@ export const Album = () => {
         ))}
         </Grid>
       </section>
-      <footer>
+      <footer className={classes.footer}>
+        <NewPhotoButton/>
         <NewPhoto currentAlbum={album} />
       </footer>
     </Container>
