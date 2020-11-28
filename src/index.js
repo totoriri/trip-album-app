@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {AuthProvider} from "./auth/AuthProvider"
+import {AuthProvider} from "./context/AuthContext"
 
 ReactDOM.render(
   <AuthProvider>

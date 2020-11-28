@@ -1,6 +1,6 @@
 import React,{useState,useContext} from "react"
 import { app } from "../base"
-import { AuthContext } from "../auth/AuthProvider"
+import { AuthContext } from "../context/AuthContext"
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';

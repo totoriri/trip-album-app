@@ -1,7 +1,6 @@
 import React from "react";
 import { app } from "../base";
-import { Link } from "react-router-dom"
-import NewAlbumForm from "./NewAlbumForm"
+import { Link,withRouter } from "react-router-dom"
 
 import Container from "@material-ui/core/Container"
 import CssBaseline from "@material-ui/core/CssBaseline"
@@ -55,6 +54,7 @@ const Home = (props) => {
   const classes = useStyles();
 
   const { albums } = props;
+  const { history } = props;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -90,13 +90,12 @@ const Home = (props) => {
             </Grid>
             ))
           }
-          <AddNewAlbumButton/>
+          <AddNewAlbumButton history={history}/>
           {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
-          <NewAlbumForm/>
       </Grid>
       </div>
     </Container>
   );
 }
 
-export default Home;
+export default withRouter(Home);
