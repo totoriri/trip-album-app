@@ -56,7 +56,6 @@ export const Album = () => {
       <section className={classes.paper}>
         <header>
           <Typography component="h1" variant="h3">{albumName}</Typography>
-          <Typography component="body" variant="body">Go to the <Link to="/">Home page</Link></Typography>
         </header>
         <Grid container spacing={10} justify="center" className={classes.root}>
         {images.map((image) => (
