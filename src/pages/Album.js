@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import { NewPhoto } from "../components/NewPhoto";
+import { NewPhotoForm } from "../components/NewPhotoForm";
 import { app } from "../base";
 import NewPhotoButton from "../components/AddNewPhotoButton"
 
@@ -79,8 +79,8 @@ export const Album = () => {
         </Grid>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton/>
-        <NewPhoto currentAlbum={album} />
+        <NewPhotoButton currentAlbum={album}/>
+        <NewPhotoForm currentAlbum={album} />
       </footer>
     </Container>
   );

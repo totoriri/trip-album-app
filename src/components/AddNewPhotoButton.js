@@ -1,8 +1,11 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { useRouteMatch, Link } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { withRouter } from "react-router";
+
+
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -14,17 +17,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
-
-const IconLabelButtons = ({history}) => {
+const IconLabelButtons = ({history,currentAlbum}) => {
   const classes = useStyles();
 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("yaksfjhak")
-    // history.push("/newPhotoForm")
-    history.push("/")
+    history.push("/login")
   }
+
+  const match = useRouteMatch("/:album");
+  console.log(match)
+  const { album } = match.params;
+  console.log(match)
 
   return (
       <Button
@@ -32,7 +37,8 @@ const IconLabelButtons = ({history}) => {
         color="default"
         className={classes.button}
       startIcon={<AddCircleIcon fontSize="large" />}
-      onClick={(e)=>handleClick(e)}
+      onClick={(e) => handleClick(e)}
+      currentAlbum={album}
       >
         New Photo
       </Button>

@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/Header.js"
 import { app } from "./base"
 import NewAlbumForm from "./pages/NewAlbumForm"
+import NewPhotoForm from "./components/NewPhotoForm"
 import {Album} from "./pages/Album"
 import { AuthContext } from "./context/AuthContext"
 

@@ -28,7 +28,7 @@ const IconLabelButtons = ({history}) => {
     e.preventDefault();
     console.log("yaksfjhak")
     // history.push("/newAlbumForm")
-    history.push("/")
+    history.push("/login")
   }
 
   return (
