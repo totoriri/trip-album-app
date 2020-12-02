@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import { NewPhoto } from "../components/NewPhoto";
+import { NewPhotoForm } from "../components/NewPhotoForm";
 import { app } from "../base";
+import NewPhotoButton from "../components/AddNewPhotoButton"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -20,8 +21,14 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  albumTitle: {
+    marginTop:theme.spacing(5)
+  },
   root: {
     marginTop: "30px"
+  },
+  footer: {
+    textAlign:"center"
   }
 }))
 
@@ -51,8 +58,7 @@ export const Album = () => {
     <Container component="main">
       <section className={classes.paper}>
         <header>
-          <Typography component="h1" variant="h3">{albumName}</Typography>
-          <Typography component="body" variant="body">Go to the <Link to="/">Home page</Link></Typography>
+          <Typography className={classes.albumTitle} component="h1" variant="h3">{albumName}</Typography>
         </header>
         <Grid container spacing={10} justify="center" className={classes.root}>
         {images.map((image) => (
@@ -72,8 +78,9 @@ export const Album = () => {
         ))}
         </Grid>
       </section>
-      <footer>
-        <NewPhoto currentAlbum={album} />
+      <footer className={classes.footer}>
+        <NewPhotoButton currentAlbum={album}/>
+        <NewPhotoForm currentAlbum={album} />
       </footer>
     </Container>
   );

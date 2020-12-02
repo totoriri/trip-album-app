@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const NewPhoto = ({currentAlbum}) => {
+export const NewPhotoForm = ({currentAlbum}) => {
   const classes = useStyles();
   const [file, setFile] = useState(null)
 
@@ -72,3 +72,5 @@ export const NewPhoto = ({currentAlbum}) => {
     </Container>
   )
 }
+
+export default NewPhotoForm;
