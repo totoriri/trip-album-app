@@ -3,6 +3,7 @@ import { useRouteMatch, Link } from "react-router-dom";
 import { NewPhotoForm } from "../components/NewPhotoForm";
 import { app } from "../base";
 import NewPhotoButton from "../components/AddNewPhotoButton"
+import AlbumProvider from "../context/AlbumContext"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -55,6 +56,7 @@ export const Album = () => {
   }, []);
 
   return (
+    <AlbumProvider>
     <Container component="main">
       <section className={classes.paper}>
         <header>
@@ -82,6 +84,7 @@ export const Album = () => {
         <NewPhotoButton currentAlbum={album}/>
         <NewPhotoForm currentAlbum={album} />
       </footer>
-    </Container>
+      </Container>
+    </AlbumProvider>
   );
 };
