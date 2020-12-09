@@ -82,7 +82,7 @@ export const Album = () => {
       </section>
       <footer className={classes.footer}>
         <NewPhotoButton currentAlbum={album}/>
-        <NewPhotoForm currentAlbum={album} />
+        {/* <NewPhotoForm currentAlbum={album} /> */}
       </footer>
       </Container>
     </AlbumProvider>
