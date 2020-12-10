@@ -1,6 +1,6 @@
 import React, { useState,createContext,useContext,useEffect } from "react";
-import {AuthContext} from "../context/AuthContext"
-import {db} from "../base"
+import { AuthContext } from "../context/AuthContext"
+import { db } from "../utils/base"
 
 export const AlbumContext = createContext();
 
@@ -12,18 +12,14 @@ const AlbumProvider = (children) => {
   const { currentUser } = useContext(AuthContext);
 
   const addAlbum = ({text}) => {
-    const newAlbum = [...albums, { text }]
+    const newAlbum = [...albums, { albumTitle, date }]
     setAlbums(newAlbum)
 
     db
       .collection("users")
       .doc(currentUser.uid)
       .collection("albums")
-      .add({
-        title: text,
-        createAt: new Date(),
-        isCompleted: false
-      })
+      .add({ albumTitle})
   }
 
   useEffect(async () => {
