@@ -12,14 +12,18 @@ const AlbumProvider = (children) => {
   const { currentUser } = useContext(AuthContext);
 
   const addAlbum = ({text}) => {
-    const newAlbum = [...albums, { albumTitle, date }]
+    const newAlbum = [...albums, { text }]
     setAlbums(newAlbum)
 
     db
       .collection("users")
       .doc(currentUser.uid)
       .collection("albums")
-      .add({ albumTitle})
+      .add({
+        title: text,
+        createAt: new Date(),
+        uid: currentUser.uid
+      })
   }
 
   useEffect(async () => {
