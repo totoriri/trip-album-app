@@ -45,8 +45,8 @@ export const Album = () => {
   const { album } = match.params;
   console.log(match)
 
-  useEffect(() => {
-       db.collection("albums")
+  useEffect(async() => {
+      await db.collection("albums")
       .doc(album)
       .onSnapshot((doc) => {
         setImages(doc.data().images || []);
@@ -56,7 +56,7 @@ export const Album = () => {
   }, []);
 
   return (
-    <AlbumProvider>
+    // <AlbumProvider>
     <Container component="main">
       <section className={classes.paper}>
         <header>
@@ -85,6 +85,6 @@ export const Album = () => {
         {/* <NewPhotoForm currentAlbum={album} /> */}
       </footer>
       </Container>
-    </AlbumProvider>
+    // </AlbumProvider>
   );
 };
