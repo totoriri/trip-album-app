@@ -44,6 +44,7 @@ export const Album = () => {
   console.log(match)
   const { album } = match.params;
   console.log(match)
+  console.log(album)
 
   useEffect(async() => {
       await db.collection("albums")

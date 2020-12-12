@@ -64,7 +64,7 @@ const App = () => {
           <Route exact path="/signup" component={SignUp} />
           {/* <Route path={`/${album.id}`} component={Album}/> */}
         <Route path="/albums/:album" component={Album} />
-        <Route path="/albums/create" component={NewAlbumForm}/>
+        <Route path="/create-album" component={NewAlbumForm}/>
         </Switch>
       </Router>
     // </AuthProvider>

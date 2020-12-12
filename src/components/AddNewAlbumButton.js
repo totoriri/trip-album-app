@@ -28,20 +28,20 @@ const IconLabelButtons = ({history}) => {
     e.preventDefault();
     console.log("yaksfjhak")
     // history.push("/newAlbumForm")
-    history.push("/newAlbumForm")
+    history.push("/create-album")
   }
 
   return (
-      // <Button
-      //   variant="contained"
-      //   color="default"
-      //   className={classes.button}
-      // startIcon={<AddCircleIcon fontSize="large" />}
-      // onClick={(e)=>handleClick(e)}
-      // >
-      //   New Album
-      // </Button>
-    <Link to="/albums/create">create Albums</Link>
+      <Button
+        variant="contained"
+        color="default"
+        className={classes.button}
+      startIcon={<AddCircleIcon fontSize="large" />}
+      onClick={(e)=>handleClick(e)}
+      >
+        New Album
+      </Button>
+    // <Link to="/albums/create">create Albums</Link>
   );
 }
 
