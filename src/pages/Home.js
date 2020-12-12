@@ -70,7 +70,7 @@ const Home = (props) => {
           {
             albums.map(album => (
                 <Grid item  key={album.name}>
-              <Link to={`/${album.id}`}>
+              <Link to={`/albums/${album.id}`}>
                   <Card className={classes.root}>
                     <div className={classes.details}>
                     <CardContent className={classes.content}>

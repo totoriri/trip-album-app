@@ -7,7 +7,7 @@ import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { withRouter } from "react-router";
+import { withRouter,Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -32,15 +32,16 @@ const IconLabelButtons = ({history}) => {
   }
 
   return (
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-      startIcon={<AddCircleIcon fontSize="large" />}
-      onClick={(e)=>handleClick(e)}
-      >
-        New Album
-      </Button>
+      // <Button
+      //   variant="contained"
+      //   color="default"
+      //   className={classes.button}
+      // startIcon={<AddCircleIcon fontSize="large" />}
+      // onClick={(e)=>handleClick(e)}
+      // >
+      //   New Album
+      // </Button>
+    <Link to="/albums/create">create Albums</Link>
   );
 }
 

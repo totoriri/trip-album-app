@@ -32,16 +32,19 @@ const IconLabelButtons = ({history,currentAlbum}) => {
   console.log(match)
 
   return (
-      <Button
-        variant="contained"
-        color="default"
-        className={classes.button}
-      startIcon={<AddCircleIcon fontSize="large" />}
-      onClick={(e) => handleClick(e)}
-      currentAlbum={album}
-      >
-        New Photo
-      </Button>
+      // <Button
+      //   variant="contained"
+      //   color="default"
+      //   className={classes.button}
+      // startIcon={<AddCircleIcon fontSize="large" />}
+      // onClick={(e) => handleClick(e)}
+      // currentAlbum={album}
+      // >
+      //   New Photo
+      // </Button>
+    <Link to="/albums/create">
+      create Album
+    </Link>
   );
 }
 

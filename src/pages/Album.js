@@ -40,7 +40,7 @@ export const Album = () => {
   const [albumName, setAlbumName] = useState("");
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
-  const match = useRouteMatch("/:album");
+  const match = useRouteMatch("/albums/:album");
   console.log(match)
   const { album } = match.params;
   console.log(match)
@@ -83,6 +83,9 @@ export const Album = () => {
       <footer className={classes.footer}>
         <NewPhotoButton currentAlbum={album}/>
         {/* <NewPhotoForm currentAlbum={album} /> */}
+        {/* <Link to="/albums/create">
+          create Album
+        </Link> */}
       </footer>
       </Container>
     // </AlbumProvider>
