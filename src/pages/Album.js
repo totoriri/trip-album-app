@@ -41,7 +41,6 @@ export const Album = () => {
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/albums/:album");
-  console.log(match)
   const { album } = match.params;
   console.log(match)
   console.log(album)

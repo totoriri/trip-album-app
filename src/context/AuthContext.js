@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const signup = async(username,email,password,history) => {
+  const signup = async(email,password,history) => {
     try {
       // 備忘録（const と asyncの関係性において）
       // const newUser = await auth.createUserWithEmailAndPassword(email, password)
