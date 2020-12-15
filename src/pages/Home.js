@@ -70,7 +70,7 @@ const Home = (props) => {
           {
             albums.map(album => (
                 <Grid item  key={album.name}>
-              <Link to={`/${album.id}`}>
+              <Link to={`/albums/${album.id}`}>
                   <Card className={classes.root}>
                     <div className={classes.details}>
                     <CardContent className={classes.content}>
@@ -82,7 +82,8 @@ const Home = (props) => {
                       </div>
                     <CardMedia
                       className={classes.cover}
-                      image={album.images ? album.images[0].url : ""}               alt="album"
+                      image={album.images ? album.images[0].url : ""}
+                      alt="album"
                       title="Live from space album cover"
                     />
                 </Card>

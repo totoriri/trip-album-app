@@ -7,7 +7,7 @@ import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import { withRouter } from "react-router";
+import { withRouter,Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -28,7 +28,7 @@ const IconLabelButtons = ({history}) => {
     e.preventDefault();
     console.log("yaksfjhak")
     // history.push("/newAlbumForm")
-    history.push("/newAlbumForm")
+    history.push("/create-album")
   }
 
   return (
@@ -41,6 +41,7 @@ const IconLabelButtons = ({history}) => {
       >
         New Album
       </Button>
+    // <Link to="/albums/create">create Albums</Link>
   );
 }
 

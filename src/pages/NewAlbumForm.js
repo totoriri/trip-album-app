@@ -73,8 +73,8 @@ const NewAlbumForm = () => {
             fullWidth
             variant="contained"
             color="primary"
-        className={classes.submit}
-        onClick={onAlbumCreate}
+            className={classes.submit}
+            onClick={onAlbumCreate}
             >
             Create Album
             </Button>

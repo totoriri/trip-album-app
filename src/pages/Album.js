@@ -3,6 +3,7 @@ import { useRouteMatch, Link } from "react-router-dom";
 import { NewPhotoForm } from "../components/NewPhotoForm";
 import { app } from "../base";
 import NewPhotoButton from "../components/AddNewPhotoButton"
+import AlbumProvider from "../context/AlbumContext"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -39,13 +40,13 @@ export const Album = () => {
   const [albumName, setAlbumName] = useState("");
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
-  const match = useRouteMatch("/:album");
-  console.log(match)
+  const match = useRouteMatch("/albums/:album");
   const { album } = match.params;
   console.log(match)
+  console.log(album)
 
-  useEffect(() => {
-       db.collection("albums")
+  useEffect(async() => {
+      await db.collection("albums")
       .doc(album)
       .onSnapshot((doc) => {
         setImages(doc.data().images || []);
@@ -55,6 +56,7 @@ export const Album = () => {
   }, []);
 
   return (
+    // <AlbumProvider>
     <Container component="main">
       <section className={classes.paper}>
         <header>
@@ -80,8 +82,12 @@ export const Album = () => {
       </section>
       <footer className={classes.footer}>
         <NewPhotoButton currentAlbum={album}/>
-        <NewPhotoForm currentAlbum={album} />
+        {/* <NewPhotoForm currentAlbum={album} /> */}
+        {/* <Link to="/albums/create">
+          create Album
+        </Link> */}
       </footer>
-    </Container>
+      </Container>
+    // </AlbumProvider>
   );
 };
