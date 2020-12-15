@@ -43,8 +43,8 @@ const SignUp = ({ history }) => {
   const { signup } = useContext(AuthContext);
   const handleSubmit = event => {
     event.preventDefault();
-    const { email, password } = event.target.elements;
-    signup(email.value, password.value, history);
+    const { username,email, password } = event.target.elements;
+    signup(username.value,email.value, password.value, history);
   };
 
   return (
@@ -59,6 +59,18 @@ const SignUp = ({ history }) => {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           {/* <input name="email" type="email" placeholder="Email" /> */}
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="User Name"
+              name="username"
+              type="username"
+            // autoComplete="email"
+            autoFocus
+          />
           <TextField
             variant="outlined"
             margin="normal"
