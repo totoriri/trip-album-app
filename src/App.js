@@ -51,6 +51,7 @@ const App = () => {
           {/* <Route path={`/${album.id}`} component={Album}/> */}
         <Route path="/albums/:album" component={Album} />
         <Route path="/create-album" component={NewAlbumForm}/>
+        <Route path="/addNewPhoto" component={NewPhotoForm}/>
         </Switch>
       </Router>
     // </AuthProvider>

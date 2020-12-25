@@ -22,8 +22,8 @@ const IconLabelButtons = ({history,currentAlbum}) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("yaksfjhak")
-    history.push("/login")
+    console.log(`currentAlbum`,currentAlbum)
+    history.push("/addNewPhoto")
   }
 
   const match = useRouteMatch("/:album");
@@ -32,19 +32,16 @@ const IconLabelButtons = ({history,currentAlbum}) => {
   console.log(match)
 
   return (
-      // <Button
-      //   variant="contained"
-      //   color="default"
-      //   className={classes.button}
-      // startIcon={<AddCircleIcon fontSize="large" />}
-      // onClick={(e) => handleClick(e)}
-      // currentAlbum={album}
-      // >
-      //   New Photo
-      // </Button>
-    <Link to="/albums/create">
-      create Album
-    </Link>
+      <Button
+        variant="contained"
+        color="default"
+        className={classes.button}
+      startIcon={<AddCircleIcon fontSize="large" />}
+      onClick={(e) => handleClick(e)}
+      currentAlbum={currentAlbum}
+      >
+        New Photo
+      </Button>
   );
 }
 

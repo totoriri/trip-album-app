@@ -32,15 +32,16 @@ export const NewPhotoForm = ({currentAlbum}) => {
   }
 
   const onUpload = async () => {
-    const storageRef = storage.ref()
-    const fileRef = storageRef.child(file.name)
-    await fileRef.put(file)
-    db.collection("albums").doc(currentAlbum).update({
-        images: firebase.firestore.FieldValue.arrayUnion({
-        name: file.name,
-        url: await fileRef.getDownloadURL()
-      })
-    })
+    // const storageRef = storage.ref()
+    // const fileRef = storageRef.child(file.name)
+    // await fileRef.put(file)
+    // db.collection("albums").doc(currentAlbum).update({
+    //     images: firebase.firestore.FieldValue.arrayUnion({
+    //     name: file.name,
+    //     url: await fileRef.getDownloadURL()
+    //   })
+    // })
+    console.log(currentAlbum)
   }
 
   return (
