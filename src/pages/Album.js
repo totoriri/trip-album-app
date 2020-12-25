@@ -45,14 +45,14 @@ export const Album = () => {
   console.log(match)
   console.log(album)
 
-  useEffect(async() => {
-      await db.collection("albums")
+  useEffect(() => {
+    (async() => await db.collection("albums")
       .doc(album)
       .onSnapshot((doc) => {
         setImages(doc.data().images || []);
         setAlbumName(doc.data().name);
         console.log(doc.data().images)
-      });
+      }))()
   }, []);
 
   return (
