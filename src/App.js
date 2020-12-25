@@ -17,8 +17,6 @@ import { AuthContext } from "./context/AuthContext"
 const db = app.firestore();
 
 const App = () => {
-  const [albums, setAlbums] = useState([])
-  const col = db.collection("albums");
   const { currentUser } = useContext(AuthContext);
 
   console.log(currentUser)
@@ -40,26 +38,14 @@ const App = () => {
   // },[])
 
   // これが新しいやつ
-  useEffect(() => {
-    // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
-    col.where("uid", "==", "CK7mvAqVMtYesYsoESXUQkaW7UU2").onSnapshot((snapshot) => {
-      const tempAlbums = [];
-      snapshot.forEach((doc) => {
-        tempAlbums.push({ ...doc.data(), id: doc.id });
-      })
-      setAlbums(tempAlbums);
-      // {name:"shoes",id:"shoes"}
-      console.log(tempAlbums)
-    })
 
-  },[])
 
   return (
     // <AuthProvider>
     <Router>
         <Header/>
         <Switch>
-          <PrivateRoute exact path="/" albums={albums} component={Home} />
+          <PrivateRoute exact path="/"  component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           {/* <Route path={`/${album.id}`} component={Album}/> */}
