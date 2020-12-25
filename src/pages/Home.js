@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect,useState,useContext} from "react";
 import { app } from "../base";
-import { Link,withRouter } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
+import {AuthContext} from "../context/AuthContext"
 
 import Container from "@material-ui/core/Container"
 import CssBaseline from "@material-ui/core/CssBaseline"
@@ -49,12 +50,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+const db = app.firestore()
+
+
 const Home = (props) => {
 
   const classes = useStyles();
+  const [albums, setAlbums] = useState([])
+  const { currentUser } = useContext(AuthContext);
+  const col = db.collection("albums");
 
-  const { albums } = props;
+
   const { history } = props;
+
+  useEffect(() => {
+    // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
+    col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
+      const tempAlbums = [];
+      snapshot.forEach((doc) => {
+        tempAlbums.push({ ...doc.data(), id: doc.id });
+      })
+      setAlbums(tempAlbums);
+      // {name:"shoes",id:"shoes"}
+      console.log(tempAlbums)
+    })
+
+  },[])
 
   return (
     <Container component="main" maxWidth="xs">
