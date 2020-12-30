@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState,useRouteMatch} from 'react'
 import firebase from 'firebase'
 import { app } from '../base'
+import {withRouter} from "react-router-dom"
 
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const NewPhotoForm = ({currentAlbum}) => {
+export const NewPhotoForm = ({history,location}) => {
   const classes = useStyles();
   const [file, setFile] = useState(null)
 
@@ -31,17 +32,22 @@ export const NewPhotoForm = ({currentAlbum}) => {
     setFile(e.target.files[0])
   }
 
+  // console.log(props.match)
+  // console.log(props)
+  const { currentAlbum } = location.state;
+  console.log(currentAlbum)
+
   const onUpload = async () => {
-    // const storageRef = storage.ref()
-    // const fileRef = storageRef.child(file.name)
-    // await fileRef.put(file)
-    // db.collection("albums").doc(currentAlbum).update({
-    //     images: firebase.firestore.FieldValue.arrayUnion({
-    //     name: file.name,
-    //     url: await fileRef.getDownloadURL()
-    //   })
-    // })
-    console.log(currentAlbum)
+    const storageRef = storage.ref()
+    const fileRef = storageRef.child(file.name)
+    await fileRef.put(file)
+    db.collection("albums").doc(currentAlbum).update({
+        images: firebase.firestore.FieldValue.arrayUnion({
+        name: file.name,
+        url: await fileRef.getDownloadURL()
+      })
+    })
+    history.push(`/albums/${currentAlbum}`)
   }
 
   return (
@@ -74,4 +80,4 @@ export const NewPhotoForm = ({currentAlbum}) => {
   )
 }
 
-export default NewPhotoForm;
+export default withRouter(NewPhotoForm);

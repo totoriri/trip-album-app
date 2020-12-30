@@ -23,13 +23,13 @@ const IconLabelButtons = ({history,currentAlbum}) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(`currentAlbum`,currentAlbum)
-    history.push("/addNewPhoto")
+    // history.push("/addNewPhoto")
+    history.push({
+      pathname: '/addNewPhoto',
+      state: { currentAlbum: currentAlbum }
+    })
   }
 
-  const match = useRouteMatch("/:album");
-  console.log(match)
-  const { album } = match.params;
-  console.log(match)
 
   return (
       <Button
@@ -38,7 +38,6 @@ const IconLabelButtons = ({history,currentAlbum}) => {
         className={classes.button}
       startIcon={<AddCircleIcon fontSize="large" />}
       onClick={(e) => handleClick(e)}
-      currentAlbum={currentAlbum}
       >
         New Photo
       </Button>
