@@ -47,7 +47,8 @@ export const Album = () => {
 
   useEffect(() => {
     (async () => {
-      await db.collection("albums")
+      await db
+        .collection("albums")
         .doc(album)
         .onSnapshot((doc) => {
           setImages(doc.data().images || []);

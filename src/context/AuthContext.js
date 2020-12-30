@@ -91,8 +91,10 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  useEffect(async() => {
-    await auth.onAuthStateChanged(user=>setCurrentUser(user));
+  useEffect( () => {
+    (async() => {
+      await auth.onAuthStateChanged(user => setCurrentUser(user));
+    })()
   },[])
 
   return (
