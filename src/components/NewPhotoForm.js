@@ -39,14 +39,18 @@ export const NewPhotoForm = ({history,location}) => {
 
   const onUpload = async () => {
     const storageRef = storage.ref()
-    const fileRef = storageRef.child(file.name)
-    await fileRef.put(file)
-    db.collection("albums").doc(currentAlbum).update({
+    if (file) {
+      const fileRef = storageRef.child(file.name)
+      await fileRef.put(file)
+      db.collection("albums").doc(currentAlbum).update({
         images: firebase.firestore.FieldValue.arrayUnion({
-        name: file.name,
-        url: await fileRef.getDownloadURL()
+          name: file.name,
+          url: await fileRef.getDownloadURL()
+        })
       })
-    })
+    }else{
+      return;
+    }
     history.push(`/albums/${currentAlbum}`)
   }
 
