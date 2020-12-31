@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import {withRouter} from "react-router-dom"
 
 const db = app.firestore();
 
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NewAlbumForm = () => {
+const NewAlbumForm = ({history}) => {
 
   const classes = useStyles();
 
@@ -34,18 +35,18 @@ const NewAlbumForm = () => {
   }
 
   const onAlbumCreate = () => {
-    albumName&&
-    // db.collection("albums").doc(albumName).set({
-    //   name: albumName
-    // })
-    db.collection("albums").add({
-      uid: currentUser.uid,
-      isComplete: false,
-      createdAt: new Date(),
-      name: albumName
-    });
-    // to clear the input
+    if (albumName) {
+      db.collection("albums").add({
+        uid: currentUser.uid,
+        isComplete: false,
+        createdAt: new Date(),
+        name: albumName
+      })
+    } else {
+      return;
+    }
     setAlbumName("")
+    history.push("/")
   }
 
   return (
@@ -83,4 +84,4 @@ const NewAlbumForm = () => {
   )
 }
 
-export default NewAlbumForm;
+export default withRouter(NewAlbumForm);
