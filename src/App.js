@@ -5,10 +5,10 @@ import { AuthProvider } from "./context/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Header from "./components/Header.js"
+import Header from "./components/header/Header.js"
 import { app } from "./base"
-import NewAlbumForm from "./pages/NewAlbumForm"
-import NewPhotoForm from "./components/NewPhotoForm"
+import NewAlbumForm from "./pages/forms/NewAlbumForm"
+import NewPhotoForm from "./pages/forms/NewPhotoForm"
 import {Album} from "./pages/Album"
 import { AuthContext } from "./context/AuthContext"
 

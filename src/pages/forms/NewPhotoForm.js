@@ -1,6 +1,6 @@
 import React, {useState,useRouteMatch} from 'react'
 import firebase from 'firebase'
-import { app } from '../base'
+import { app } from '../../base'
 import {withRouter} from "react-router-dom"
 
 import Typography from '@material-ui/core/Typography';
