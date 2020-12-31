@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link } from "react-router-dom";
-import { NewPhotoForm } from "../components/NewPhotoForm";
+import { NewPhotoForm } from "./forms/NewPhotoForm";
 import { app } from "../base";
-import NewPhotoButton from "../components/AddNewPhotoButton"
-import AlbumProvider from "../context/AlbumContext"
+import NewPhotoButton from "../components/buttons/NewPhotoButton"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
