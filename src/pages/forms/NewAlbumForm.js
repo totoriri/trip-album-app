@@ -13,7 +13,7 @@ const db = app.firestore();
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(15),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -29,7 +29,6 @@ const NewAlbumForm = ({history}) => {
 
   const [albumName, setAlbumName] = useState("");
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser.uid)
   const onAlbumNameChange = (event) => {
     setAlbumName(event.target.value)
   }
