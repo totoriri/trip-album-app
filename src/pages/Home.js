@@ -14,6 +14,7 @@ import CardContent from "@material-ui/core/CardContent"
 import SearchBar from "../components/SearchBar"
 import AddNewAlbumButton from "../components/buttons/NewAlbumButton"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Img from "../assets/img/homeTop.png"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,13 +30,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     textAlign:"center"
   },
-  homeTop: {
-    // backgroundColor: "lightGray"
-  },
   root: {
     display: 'flex',
     height: 200,
-    width: 400,
+    // width: 400,
     flex: "1 auto"
   },
   details: {
@@ -82,8 +80,8 @@ const Home = (props) => {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.homeTop}>
-          <Typography className={classes.pageTitle} component="h1" variant="h3">Albums</Typography>
-          <SearchBar />
+          <img src={Img}/>
+          {/* <SearchBar /> */}
         </div>
       {/* previously in App.js */}
         <Grid container maxWidth="xs" justify="center" className={classes.albums} spacing={3}>
