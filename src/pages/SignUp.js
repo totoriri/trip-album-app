@@ -41,10 +41,13 @@ const SignUp = ({ history }) => {
   const classes = useStyles();
 
   const { signup } = useContext(AuthContext);
-  const handleSubmit = event => {
+
+  const handleSubmit = async(event) => {
     event.preventDefault();
-    const { username,email, password } = event.target.elements;
-    signup(username.value,email.value, password.value, history);
+    const {email, password} = event.target.elements;
+    console.log(email.value, password.value)
+    await signup(email.value, password.value);
+    history.push("/")
   };
 
   return (
@@ -59,7 +62,7 @@ const SignUp = ({ history }) => {
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
           {/* <input name="email" type="email" placeholder="Email" /> */}
-          <TextField
+          {/* <TextField
             variant="outlined"
             margin="normal"
             required
@@ -70,7 +73,7 @@ const SignUp = ({ history }) => {
               type="username"
             // autoComplete="email"
             autoFocus
-          />
+          /> */}
           <TextField
             variant="outlined"
             margin="normal"
