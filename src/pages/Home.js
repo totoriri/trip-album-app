@@ -27,8 +27,12 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(20),
   },
   pageTitle: {
+    fontSize:"40px",
     marginTop: theme.spacing(10),
     textAlign:"center"
+  },
+  homeTop: {
+    display: "flex"
   },
   root: {
     display: 'flex',
@@ -80,6 +84,10 @@ const Home = (props) => {
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.homeTop}>
+          <div>
+            <h1 className={classes.pageTitle}>Let's create albums!</h1>
+            <AddNewAlbumButton history={history} />
+          </div>
           <img src={Img}/>
           {/* <SearchBar /> */}
         </div>
@@ -110,7 +118,6 @@ const Home = (props) => {
             </Grid>
             ))
           }
-          <AddNewAlbumButton history={history}/>
           {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
       </Grid>
       </div>
