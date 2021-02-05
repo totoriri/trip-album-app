@@ -46,7 +46,8 @@ const Login = ({ history }) => {
   const handleSubmit = event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
-    login(email.value, password.value, history);
+    login(email.value, password.value);
+    // history.push("/")
   };
 
   return (

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Header = () => {
+const Header = ({history}) => {
 
   const classes = useStyles();
   const { currentUser } = useContext(AuthContext);
@@ -39,7 +39,7 @@ const Header = () => {
               {
                 currentUser ?
                 <div className={classes.flex2}>
-                <MenuListComposition/>
+              <MenuListComposition history={history}/>
                   <NotificationsIcon/>
                 </div>
                 :

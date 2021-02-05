@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Header from "./components/header/Header.js"
+import Profile from "./pages/Profile"
 import { app } from "./base"
 import NewAlbumForm from "./pages/forms/NewAlbumForm"
 import NewPhotoForm from "./pages/forms/NewPhotoForm"
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/albums/:album" component={Album} />
         <Route path="/create-album" component={NewAlbumForm}/>
         <Route path="/addNewPhoto" component={NewPhotoForm}/>
+        <Route path="/users/:userID" component={Profile} />
         </Switch>
       </Router>
     // </AuthProvider>
