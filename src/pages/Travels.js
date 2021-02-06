@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch, Link } from "react-router-dom";
+import { useRouteMatch, Link,useHistory } from "react-router-dom";
 import { NewPhotoForm } from "./forms/NewPhotoForm";
 import { app } from "../base";
 import NewPhotoButton from "../components/buttons/NewPhotoButton"
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  albumTitle: {
+  travelTitle: {
     marginTop:theme.spacing(5)
   },
   root: {
@@ -84,27 +84,32 @@ function a11yProps(index) {
 
 
 
-export const Album = () => {
+ const Travels = () => {
 
   const classes = useStyles();
   const [images, setImages] = useState([]);
-  const [albumName, setAlbumName] = useState("");
+   const [travelName, setTravelName] = useState("");
+   console.log(images)
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
-  const match = useRouteMatch("/albums/:album");
-  const { album } = match.params;
+  const match = useRouteMatch("/travels/:travel");
+  const { travel } = match.params;
   console.log(match)
-  console.log(album)
+   console.log(travel)
+   const history = useHistory();
 
   useEffect(() => {
     (async () => {
       await db
-        .collection("albums")
-        .doc(album)
+        .collection("travels")
+        .doc(travel)
         .onSnapshot((doc) => {
-          setImages(doc.data().images || []);
-          setAlbumName(doc.data().name);
-          console.log(images)
+          if (doc.data) {
+            console.log(doc)
+            setImages(doc.data.images?doc.data().images :[])
+            setTravelName(doc.data.images?doc.data().name:[]);
+            console.log(images)
+          }
     })
     })();
   }, []);
@@ -165,13 +170,15 @@ export const Album = () => {
     <Container component="main">
       <section className={classes.paper}>
         <header>
-          <Typography className={classes.albumTitle} component="h1" variant="h3">{albumName}</Typography>
+          <Typography className={classes.travelTitle} component="h1" variant="h3">{travelName}</Typography>
         </header>
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton currentAlbum={album}/>
+        <NewPhotoButton history={history} currentTravel={travel}/>
       </footer>
       </Container>
   );
-};
+ };
+
+export default Travels;

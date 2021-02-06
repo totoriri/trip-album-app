@@ -17,16 +17,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const IconLabelButtons = ({history,currentAlbum}) => {
+const IconLabelButtons = ({history,currentTravel}) => {
   const classes = useStyles();
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(`currentAlbum`,currentAlbum)
+    console.log(`currentAlbum`,currentTravel)
     // history.push("/addNewPhoto")
     history.push({
       pathname: '/addNewPhoto',
-      state: { currentAlbum: currentAlbum }
+      state: { currentTravel: currentTravel }
     })
   }
 
