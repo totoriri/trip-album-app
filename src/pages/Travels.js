@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch, Link } from "react-router-dom";
+import { useRouteMatch, Link,useHistory } from "react-router-dom";
 import { NewPhotoForm } from "./forms/NewPhotoForm";
 import { app } from "../base";
 import NewPhotoButton from "../components/buttons/NewPhotoButton"
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  albumTitle: {
+  travelTitle: {
     marginTop:theme.spacing(5)
   },
   root: {
@@ -88,24 +88,26 @@ function a11yProps(index) {
 
   const classes = useStyles();
   const [images, setImages] = useState([]);
-  const [albumName, setAlbumName] = useState("");
+   const [travelName, setTravelName] = useState("");
+   console.log(images)
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
   const { travel } = match.params;
   console.log(match)
-  console.log(travel)
+   console.log(travel)
+   const history = useHistory();
 
   useEffect(() => {
     (async () => {
       await db
-        .collection("travel")
+        .collection("travels")
         .doc(travel)
         .onSnapshot((doc) => {
           if (doc.data) {
             console.log(doc)
             setImages(doc.data.images?doc.data().images :[])
-            setAlbumName(doc.data.images?doc.data().name:[]);
+            setTravelName(doc.data.images?doc.data().name:[]);
             console.log(images)
           }
     })
@@ -168,12 +170,12 @@ function a11yProps(index) {
     <Container component="main">
       <section className={classes.paper}>
         <header>
-          <Typography className={classes.albumTitle} component="h1" variant="h3">{albumName}</Typography>
+          <Typography className={classes.travelTitle} component="h1" variant="h3">{travelName}</Typography>
         </header>
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton currentAlbum={travel}/>
+        <NewPhotoButton history={history} currentTravel={travel}/>
       </footer>
       </Container>
   );

@@ -34,15 +34,16 @@ export const NewPhotoForm = ({history,location}) => {
 
   // console.log(props.match)
   // console.log(props)
-  const { currentAlbum } = location.state;
-  console.log(currentAlbum)
+  const { currentTravel } = location.state;
+  console.log(location)
 
   const onUpload = async () => {
     const storageRef = storage.ref()
     if (file) {
       const fileRef = storageRef.child(file.name)
       await fileRef.put(file)
-      db.collection("albums").doc(currentAlbum).update({
+      console.log(fileRef)
+      db.collection("travels").doc(currentTravel).update({
         images: firebase.firestore.FieldValue.arrayUnion({
           name: file.name,
           url: await fileRef.getDownloadURL()
@@ -51,7 +52,7 @@ export const NewPhotoForm = ({history,location}) => {
     }else{
       return;
     }
-    history.push(`/albums/${currentAlbum}`)
+    history.push(`/travels/${currentTravel}`)
   }
 
   return (
