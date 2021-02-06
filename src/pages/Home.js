@@ -15,6 +15,7 @@ import SearchBar from "../components/SearchBar"
 import AddNewAlbumButton from "../components/buttons/NewAlbumButton"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Img from "../assets/img/homeTop.png"
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -49,7 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
   addCircleIcon: {
     width:"300px"
-  }
+  },
+  button: {
+    margin: theme.spacing(1),
+    width: "300px",
+    height: "80px",
+    position: "relative"
+  },
 }))
 
 const db = app.firestore()
@@ -64,6 +71,13 @@ const Home = (props) => {
 
 
   const { history } = props;
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log("yaksfjhak")
+    // history.push("/newAlbumForm")
+    history.push("/create-album")
+  }
 
   useEffect(() => {
     // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
@@ -88,7 +102,15 @@ const Home = (props) => {
         <div className={classes.homeTop}>
           <div>
             <h1 className={classes.pageTitle}>Let's create albums!</h1>
-            <AddNewAlbumButton history={history} />
+            <Button
+        　　　　variant="contained"
+        　　　　color="default"
+        　　　　className={classes.button}
+    　　　　　　　startIcon={<AddCircleIcon fontSize="large" />}
+    　　　　　　　onClick={(e)=>handleClick(e)}
+      　　　　　>
+        　　　New Album
+      　　　　</Button>
           </div>
           <img src={Img}/>
           {/* <SearchBar /> */}
