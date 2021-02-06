@@ -67,15 +67,17 @@ const Home = (props) => {
 
   useEffect(() => {
     // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
-    col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
-      const tempAlbums = [];
-      snapshot.forEach((doc) => {
-        tempAlbums.push({ ...doc.data(), id: doc.id });
+    if (currentUser !== null) {
+      col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
+        const tempAlbums = [];
+        snapshot.forEach((doc) => {
+          tempAlbums.push({ ...doc.data(), id: doc.id });
+        })
+        setAlbums(tempAlbums);
+        // {name:"shoes",id:"shoes"}
+        console.log(tempAlbums)
       })
-      setAlbums(tempAlbums);
-      // {name:"shoes",id:"shoes"}
-      console.log(tempAlbums)
-    })
+    }
 
   },[])
 
