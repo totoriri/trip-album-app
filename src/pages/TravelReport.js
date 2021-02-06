@@ -84,23 +84,23 @@ function a11yProps(index) {
 
 
 
-export const Album = () => {
+export const TravelReport = () => {
 
   const classes = useStyles();
   const [images, setImages] = useState([]);
   const [albumName, setAlbumName] = useState("");
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
-  const match = useRouteMatch("/albums/:album");
-  const { album } = match.params;
+  const match = useRouteMatch("/travelReports/:travelReport");
+  const { travelReport } = match.params;
   console.log(match)
-  console.log(album)
+  console.log(travelReport)
 
   useEffect(() => {
     (async () => {
       await db
-        .collection("albums")
-        .doc(album)
+        .collection("travelReport")
+        .doc(travelReport)
         .onSnapshot((doc) => {
           setImages(doc.data().images || []);
           setAlbumName(doc.data().name);
@@ -170,7 +170,7 @@ export const Album = () => {
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton currentAlbum={album}/>
+        <NewPhotoButton currentAlbum={travelReport}/>
       </footer>
       </Container>
   );

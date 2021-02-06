@@ -10,7 +10,7 @@ import Profile from "./pages/Profile"
 import { app } from "./base"
 import NewAlbumForm from "./pages/forms/NewAlbumForm"
 import NewPhotoForm from "./pages/forms/NewPhotoForm"
-import {Album} from "./pages/Album"
+import {TravelReport} from "./pages/TravelReport"
 import { AuthContext } from "./context/AuthContext"
 
 
@@ -50,7 +50,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           {/* <Route path={`/${album.id}`} component={Album}/> */}
-        <Route path="/albums/:album" component={Album} />
+        <Route path="/travelReports/:travelReport" component={TravelReport} />
         <Route path="/create-album" component={NewAlbumForm}/>
         <Route path="/addNewPhoto" component={NewPhotoForm}/>
         <Route path="/users/:userID" component={Profile} />
