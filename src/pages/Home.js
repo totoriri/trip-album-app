@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems:"center"
   },
-  albums: {
+  travels: {
     marginTop: theme.spacing(20),
   },
   pageTitle: {
@@ -64,9 +64,9 @@ const db = app.firestore()
 const Home = (props) => {
 
   const classes = useStyles();
-  const [albums, setAlbums] = useState([])
+  const [travels, setTravels] = useState([])
   const { currentUser } = useContext(AuthContext);
-  const col = db.collection("albums");
+  const col = db.collection("travels");
 
 
   const { history } = props;
@@ -82,13 +82,11 @@ const Home = (props) => {
     // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
     if (currentUser !== null) {
       col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
-        const tempAlbums = [];
+        const tempTravels = [];
         snapshot.forEach((doc) => {
-          tempAlbums.push({ ...doc.data(), id: doc.id });
+          tempTravels.push({ ...doc.data(), id: doc.id });
         })
-        setAlbums(tempAlbums);
-        // {name:"shoes",id:"shoes"}
-        console.log(tempAlbums)
+        setTravels(tempTravels);
       })
     }
 
@@ -100,7 +98,7 @@ const Home = (props) => {
       <div className={classes.paper}>
         <div className={classes.homeTop}>
           <div>
-            <h1 className={classes.pageTitle}>Let's create albums!</h1>
+            <h1 className={classes.pageTitle}>Let's create Travel　Reports!</h1>
             <Button
         　　　　variant="contained"
         　　　　color="default"
@@ -108,23 +106,23 @@ const Home = (props) => {
     　　　　　　　startIcon={<AddCircleIcon fontSize="large" />}
     　　　　　　　onClick={(e)=>handleClick(e)}
       　　　　　>
-        　　　New Album
+        　　　New Travel　Report
       　　　　</Button>
           </div>
           <img src={Img}/>
           {/* <SearchBar /> */}
         </div>
       {/* previously in App.js */}
-        <Grid container maxWidth="xs" justify="center" className={classes.albums} spacing={3}>
+        <Grid container maxWidth="xs" justify="center" className={classes.travels} spacing={3}>
         {/* this map is for displaying albums */}
           {
-            albums.map(album => (
-                <Grid item  key={album.name}>
-              <Link to={`/albums/${album.id}`}>
+            travels.map(travel => (
+              <Grid item key={travel.name}>
+              <Link to={`/travels/${travel.id}`}>
                   <Card className={classes.root}>
                     <div className={classes.details}>
                     <CardContent className={classes.content}>
-                  <Typography component="h1" variant="h5">{album.name}</Typography>
+                  <Typography component="h1" variant="h5">{travel.name}</Typography>
                       {/* <img src={album.image} alt="" /> */}
                       {/* <img src="http://placekitten.com/g/200/300" alt="" />
                     </div> */}
@@ -132,7 +130,7 @@ const Home = (props) => {
                       </div>
                     <CardMedia
                       className={classes.cover}
-                      image={album.images ? album.images[0].url : ""}
+                      image={travel.images ? travel.images[0].url : ""}
                       alt="album"
                       title="Live from space album cover"
                     />

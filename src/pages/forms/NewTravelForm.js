@@ -23,28 +23,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NewAlbumForm = ({history}) => {
+const NewTravelForm = ({history}) => {
 
   const classes = useStyles();
 
-  const [albumName, setAlbumName] = useState("");
+  const [travelName, setTravelName] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const onAlbumNameChange = (event) => {
-    setAlbumName(event.target.value)
+  const onTravelNameChange = (event) => {
+    setTravelName(event.target.value)
   }
 
-  const onAlbumCreate = () => {
-    if (albumName) {
-      db.collection("albums").add({
+  const onTravelCreate = () => {
+    if (travelName) {
+      db.collection("travels").add({
         uid: currentUser.uid,
         isComplete: false,
         createdAt: new Date(),
-        name: albumName
+        name: travelName
       })
     } else {
       return;
     }
-    setAlbumName("")
+    setTravelName("")
     history.push("/")
   }
 
@@ -55,14 +55,14 @@ const NewAlbumForm = ({history}) => {
       {/* <input value={albumName} onChange={onAlbumNameChange} type="text" />
       <button onClick={onAlbumCreate}>create Album</button> */}
       <TextField
-            value={albumName}
-            onChange={onAlbumNameChange}
+            value={travelName}
+            onChange={onTravelNameChange}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="albumName"
-            label="Album Name"
+            name="travelName"
+            label="Travel Name"
             type="text"
             id="albumName"
             autoComplete="current-password"
@@ -74,7 +74,7 @@ const NewAlbumForm = ({history}) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={onAlbumCreate}
+            onClick={onTravelCreate}
             >
             Create Album
             </Button>
@@ -83,4 +83,4 @@ const NewAlbumForm = ({history}) => {
   )
 }
 
-export default withRouter(NewAlbumForm);
+export default withRouter(NewTravelForm);
