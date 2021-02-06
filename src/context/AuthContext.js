@@ -47,17 +47,17 @@ export const AuthProvider = ({ children }) => {
     })()
   }, [])
 
-  useEffect(() => {
-    if (currentUser !== null) {
-      (async() => {
-        db.collection("users").doc(currentUser.uid).set({
-          // username:username,
-          uid:currentUser.uid,
-          createAt: new Date()
-        })
-      })()
-    }
-  },[currentUser])
+  // useEffect(() => {
+  //   if (currentUser !== null) {
+  //     (async() => {
+  //       db.collection("users").doc(currentUser.uid).set({
+  //         // username:username,
+  //         uid:currentUser.uid,
+  //         createAt: new Date()
+  //       })
+  //     })()
+  //   }
+  // },[currentUser])
 
   return (
     <AuthContext.Provider value={{login,signup,logout,currentUser}}>
