@@ -75,7 +75,7 @@ const Home = (props) => {
     e.preventDefault();
     console.log("yaksfjhak")
     // history.push("/newAlbumForm")
-    history.push("/create-album")
+    history.push("/create-travel")
   }
 
   useEffect(() => {
