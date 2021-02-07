@@ -24,6 +24,7 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
+import {data} from "./Data"
 
 
 const db = app.firestore();
@@ -89,7 +90,7 @@ function a11yProps(index) {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-   console.log(images)
+  const [isChecked,setIsChecked] = useState([])
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
@@ -104,12 +105,17 @@ function a11yProps(index) {
         .collection("travels")
         .doc(travel)
         .onSnapshot((doc) => {
-          if (doc.data) {
-            console.log(doc)
-            setImages(doc.data.images?doc.data().images :[])
-            setTravelName(doc.data.images?doc.data().name:[]);
-            console.log(images)
-          }
+          if (doc.exists) {
+            console.log("Document data:", doc.data())
+            console.log(doc.data().selectedQuestions)
+            setIsChecked(doc.data().isChecked)
+            setImages(doc.data().images || [])
+            setTravelName(doc.data().name || []);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+
     })
     })();
   }, []);
@@ -120,6 +126,8 @@ function a11yProps(index) {
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+
+    const keys = Object.keys(isChecked)
 
     return (
       <div className={classes.root}>
@@ -137,6 +145,18 @@ function a11yProps(index) {
         </paper>
         <TabPanel value={value} index={0}>
           Default Question
+          {
+            isChecked.map((item) => {
+              return (
+                <h1>{item}</h1>
+              )
+            })
+          }
+          {
+
+
+          }
+
         </TabPanel>
         <TabPanel value={value} index={1}>
         <Grid container spacing={10} justify="center" className={classes.root}>
