@@ -113,7 +113,7 @@ const NewTravelForm = ({history}) => {
                   name={Q.name}
                   onChange={handleGroupCheckboxClick}
                 />
-                <label htmlFor={Q.name}>{Q.name}</label>
+                <label htmlFor={Q.question}>{Q.question}</label>
               </div>
             );
           })
@@ -127,7 +127,7 @@ const NewTravelForm = ({history}) => {
             className={classes.submit}
             onClick={onTravelCreate}
             >
-          Create Album
+          Go!
             </Button>
       </div>
       </Container>
