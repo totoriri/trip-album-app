@@ -90,7 +90,7 @@ function a11yProps(index) {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-  const [isChecked,setIsChecked] = useState([])
+  const [val,setVal] = useState([])
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
@@ -107,8 +107,7 @@ function a11yProps(index) {
         .onSnapshot((doc) => {
           if (doc.exists) {
             console.log("Document data:", doc.data())
-            console.log(doc.data().selectedQuestions)
-            setIsChecked(doc.data().isChecked)
+            setVal(doc.data().val)
             setImages(doc.data().images || [])
             setTravelName(doc.data().name || []);
         } else {
@@ -127,7 +126,7 @@ function a11yProps(index) {
       setValue(newValue);
     };
 
-    const keys = Object.keys(isChecked)
+    const keys = Object.keys(val)
 
     return (
       <div className={classes.root}>
@@ -146,9 +145,10 @@ function a11yProps(index) {
         <TabPanel value={value} index={0}>
           Default Question
           {
-            isChecked.map((item) => {
+            val.map((item,index) => {
+              let Index = index + 1;
               return (
-                <h1>{item}</h1>
+                <h1>Q. {item}</h1>
               )
             })
           }

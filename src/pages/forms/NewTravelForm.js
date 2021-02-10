@@ -78,64 +78,72 @@ const NewTravelForm = ({ history }) => {
   const classes = useStyles();
 
   const [travelName, setTravelName] = useState("");
-  const [selectedQuestions, setSelectedQuestions] = useState([])
+  // const [selectedQuestions, setSelectedQuestions] = useState([])
   const { currentUser } = useContext(AuthContext);
   const onTravelNameChange = (event) => {
     setTravelName(event.target.value)
   }
 
 
-  const [isChecked, setIsChecked] = useState(['js']);
-  const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState(data);
+  // const [isChecked, setIsChecked] = useState(data);
+  // const [loading, setLoading] = useState(true);
+  // const [formData, setFormData] = useState(data);
 
 
-  const handleChange = (e) => {
-    if (isChecked.includes(e.target.value)) {
-      // すでに含まれていれば OFF したと判断し、
-      // イベント発行元を除いた配列を set し直す
-      setIsChecked(isChecked.filter(item => item !== e.target.value));
-    } else {
-      // そうでなければ ON と判断し、
-      // イベント発行元を末尾に加えた配列を set し直す
-      setIsChecked([...isChecked, e.target.value]);
-      // state は直接は編集できない
-      // つまり val.push(e.target.value) はNG ❌
-    }
-  };
-  // const handleSingleCheck = (e) => {
-  //   console.log(e.target);
-  //   setIsChecked({ ...isChecked, [e.target.name]: e.target.checked });
+  // const handleChange = (e) => {
+  //   if (isChecked.includes(e.target.value)) {
+  //     // すでに含まれていれば OFF したと判断し、
+  //     // イベント発行元を除いた配列を set し直す
+  //     setIsChecked(isChecked.filter(item => item !== e.target.value));
+  //   } else {
+  //     // そうでなければ ON と判断し、
+  //     // イベント発行元を末尾に加えた配列を set し直す
+  //     setIsChecked([...isChecked, e.target.value]);
+  //     // state は直接は編集できない
+  //     // つまり val.push(e.target.value) はNG ❌
+  //   }
   // };
-
-  // useEffect(() => {
-  //   const initialIsChecked = data.reduce((acc, d) => {
-  //     acc[d.name] = false;
-  //     return acc;
-  //   }, {});
-  //   setIsChecked(initialIsChecked);
-  //   setLoading(false);
-  // }, [loading]);
-
-
-
-
 
 
   const onTravelCreate = () => {
-    console.log(isChecked)
     if (travelName) {
       db.collection("travels").add({
         uid: currentUser.uid,
         isComplete: false,
         createdAt: new Date(),
         name: travelName,
-        isChecked
+        val
       })
       setTravelName("")
       history.push("/")
     }
   }
+
+  const options = [
+    { value: "印象に残ってることは？"},
+    { value: "おいしかった食べ物は？" },
+    { value: "何を買った？"},
+  ];
+
+    const [val, setVal] = React.useState('');
+    const [text, setText] = React.useState('');
+
+    const handleChange = e => {
+      // change したのはいいとして、ON なのか OFF なのか判定する必要がある
+      if (val.includes(e.target.value)) {
+        // すでに含まれていれば OFF したと判断し、
+        // イベント発行元を除いた配列を set し直す
+        setVal(val.filter(item => item !== e.target.value));
+      } else {
+        // そうでなければ ON と判断し、
+        // イベント発行元を末尾に加えた配列を set し直す
+        setVal([...val, e.target.value]);
+        // state は直接は編集できない
+        // つまり val.push(e.target.value) はNG ❌
+      }
+    };
+
+
 
 
     return (
@@ -157,39 +165,31 @@ const NewTravelForm = ({ history }) => {
             id="albumName"
             autoComplete="current-password"
           />
-           <label>
-        <input
-          type="checkbox"
-          value="js"
-          onChange={handleChange}
-          checked={isChecked.includes('js')}
-        />
-        JavaScript
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="python"
-          onChange={handleChange}
-          checked={isChecked.includes('python')}
-        />
-        Python
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="java"
-          onChange={handleChange}
-          checked={isChecked.includes('java')}
-        />
-        Java
-      </label>
+          {options.map(option => (
+            <label key={option.value}>
+            <input
+            type="checkbox"
+            value={option.value}
+            onChange={handleChange}
+            checked={val.includes(option.value)}
+            />
+            {option.value}
+            </label>
+            ))}
+            {
+            // val === '' && (
+            // <p>
+            //   自由記入：<input value={text} onChange={handleTextChange} />
+            // </p>
+            // )
+          　}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            // onClick={onTravelCreate}
             onClick={onTravelCreate}
           >
             Go!
