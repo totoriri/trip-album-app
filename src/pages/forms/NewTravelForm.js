@@ -88,7 +88,7 @@ const NewTravelForm = ({ history }) => {
         options={data}
         onChange={handleTagChange}
         getOptionLabel={(option) => option.title}
-        defaultValue={[data[13], data[12], data[11]]}
+        defaultValue={[data[1], data[3], data[4]]}
         renderInput={(params) => (
           <TextField
             {...params}
