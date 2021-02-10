@@ -1,4 +1,4 @@
-import React,{useState,useContext} from "react"
+import React,{useState,useContext,useEffect} from "react"
 import { app } from "../../base"
 import { AuthContext } from "../../context/AuthContext"
 import Container from '@material-ui/core/Container';
@@ -14,24 +14,10 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
+import { data } from "../Data"
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const db = app.firestore();
-
-
-const defaultQuestions = [
-  {
-    id: 1,
-    question:"何日間、旅行した"
-  },
-  {
-    id: 2,
-    question: "一番美味しかったご飯は？"
-  },
-  {
-    id: 3,
-    question: "起こったハプニングは？"
-  }
-]
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -45,27 +31,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const NewTravelForm = ({history}) => {
+
+const NewTravelForm = ({ history }) => {
 
   const classes = useStyles();
 
   const [travelName, setTravelName] = useState("");
-  const [selectedQuestions,setSelectedQuestions] = useState({})
   const { currentUser } = useContext(AuthContext);
+  const [tags, setTags] = useState([])
+
   const onTravelNameChange = (event) => {
     setTravelName(event.target.value)
   }
 
-  const handleGroupCheckboxClick = ({ target: { id }})=> {
-    setSelectedQuestions((s) => ({ ...s, [id]: !s[id] }));
-  };
-
-  const keys = Object.keys(selectedQuestions);
-    const arrayOfIds = [];
-    for(let i = 0; i<keys.length; i++) {
-    const id = keys[i];
-    if(selectedQuestions[id]) arrayOfIds.push(id);
-}
+  const handleTagChange = (e, value) => {
+    console.log(value)
+    setTags(value)
+  }
 
 
   const onTravelCreate = () => {
@@ -75,22 +57,18 @@ const NewTravelForm = ({history}) => {
         isComplete: false,
         createdAt: new Date(),
         name: travelName,
-        selectedQuestions: selectedQuestions
+        tags:tags
       })
-    } else {
-      return;
+      setTravelName("")
+      history.push("/")
     }
-    setTravelName("")
-    history.push("/")
   }
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline/>
-    <div className={classes.paper}>
-      {/* <input value={albumName} onChange={onAlbumNameChange} type="text" />
-      <button onClick={onAlbumCreate}>create Album</button> */}
-      <TextField
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <TextField
             value={travelName}
             onChange={onTravelNameChange}
             variant="outlined"
@@ -102,23 +80,24 @@ const NewTravelForm = ({history}) => {
             type="text"
             id="albumName"
             autoComplete="current-password"
-        />
-        {
-          defaultQuestions.map(Q => {
-            return (
-              <div className={classes.specific_group} key={Q.id}>
-                <input
-                  type="checkbox"
-                  id={Q.id}
-                  name={Q.name}
-                  onChange={handleGroupCheckboxClick}
-                />
-                <label htmlFor={Q.question}>{Q.question}</label>
-              </div>
-            );
-          })
-            }
-
+          />
+          <Autocomplete
+        multiple
+        limitTags={2}
+        id="multiple-limit-tags"
+        options={data}
+        onChange={handleTagChange}
+        getOptionLabel={(option) => option.title}
+        defaultValue={[data[1], data[3], data[4]]}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            variant="outlined"
+            label="limitTags"
+            placeholder="Favorites"
+          />
+        )}
+      />
           <Button
             type="submit"
             fullWidth
@@ -126,12 +105,12 @@ const NewTravelForm = ({history}) => {
             color="primary"
             className={classes.submit}
             onClick={onTravelCreate}
-            >
-          Go!
+          >
+            Go!
             </Button>
-      </div>
+        </div>
       </Container>
-  )
-}
+    )
+  }
 
-export default withRouter(NewTravelForm);
+  export default withRouter(NewTravelForm);
