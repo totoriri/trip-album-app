@@ -82,7 +82,7 @@ function a11yProps(index) {
   };
 }
 
-
+// const budgets = arrayOfBudget.map((obj)=> {return Object.assign({}, obj)});
 
 
  const Travels = () => {
@@ -90,7 +90,7 @@ function a11yProps(index) {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-  const [val,setVal] = useState([])
+  const [tags,setTag] = useState([])
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
@@ -107,7 +107,7 @@ function a11yProps(index) {
         .onSnapshot((doc) => {
           if (doc.exists) {
             console.log("Document data:", doc.data())
-            setVal(doc.data().val)
+            setTag(doc.data().tags)
             setImages(doc.data().images || [])
             setTravelName(doc.data().name || []);
         } else {
@@ -126,7 +126,6 @@ function a11yProps(index) {
       setValue(newValue);
     };
 
-    const keys = Object.keys(val)
 
     return (
       <div className={classes.root}>
@@ -145,10 +144,10 @@ function a11yProps(index) {
         <TabPanel value={value} index={0}>
           Default Question
           {
-            val.map((item,index) => {
+            tags.map((item,index) => {
               let Index = index + 1;
               return (
-                <h1>Q. {item}</h1>
+                <h1>Q. {item.title}</h1>
               )
             })
           }

@@ -42,7 +42,6 @@ export const NewPhotoForm = ({history,location}) => {
     if (file) {
       const fileRef = storageRef.child(file.name)
       await fileRef.put(file)
-      console.log(fileRef)
       db.collection("travels").doc(currentTravel).update({
         images: firebase.firestore.FieldValue.arrayUnion({
           name: file.name,
