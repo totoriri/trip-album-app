@@ -18,14 +18,18 @@ import Button from '@material-ui/core/Button';
 import TravelReportCard from "../components/cards/TravelReportCard"
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    // flexDirection: "column",
-    // alignItems:"center"
-  },
   homeTop: {
     display: "flex",
     hight: "100vh"
+  },
+  homeTop__btn: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  homeTop__img: {
+
   },
   travels: {
     marginTop: theme.spacing(20),
@@ -93,22 +97,22 @@ const Home = (props) => {
   return (
     <Container component="main">
       <CssBaseline />
-      <div className={classes.paper}>
         <div className={classes.homeTop}>
-          <div>
-            <h1 className={classes.pageTitle}>旅行の思い出を言葉で残そう！</h1>
+          <div　className={classes.homeTop__btn}>
+            <h1 className={classes.pageTitle}>大事な旅行の思い出を<br/>言葉で残そう！</h1>
             <Button
-        　　　　variant="contained"
-        　　　　color="default"
-        　　　　className={classes.button}
+        　　　　 variant="contained"
+        　　　　 color="default"
+        　　　　 className={classes.button}
     　　　　　　　startIcon={<AddCircleIcon fontSize="large" />}
     　　　　　　　onClick={(e)=>handleClick(e)}
       　　　　　>
-        　　　New Travel Report
+        　　　  New Travel Report
       　　　　</Button>
           </div>
-          <img src={Img}/>
-        </div>
+          <div class={classes.homeTop__img}>
+            <img src={Img} />
+          </div>
       </div>
       <TravelReportCard travels={travels}/>
     </Container>
