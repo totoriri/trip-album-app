@@ -24,7 +24,8 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import {data} from "./Data"
+import { data } from "./Data"
+import ExpandBtn from "../components/buttons/ExpandBtn"
 
 
 const db = app.firestore();
@@ -142,12 +143,14 @@ function a11yProps(index) {
           </Tabs>
         </paper>
         <TabPanel value={value} index={0}>
-          Default Question
           {
             tags.map((item,index) => {
               let Index = index + 1;
               return (
-                <h1>Q. {item.title}</h1>
+                <div>
+                  <h3>Q. {item.title}</h3>
+                  <ExpandBtn/>
+                </div>
               )
             })
           }

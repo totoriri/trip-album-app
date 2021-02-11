@@ -111,7 +111,7 @@ const Home = (props) => {
       　　　　</Button>
           </div>
           <div class={classes.homeTop__img}>
-            <img src={Img} />
+            <img src={Img}/>
           </div>
       </div>
       <TravelReportCard travels={travels}/>
