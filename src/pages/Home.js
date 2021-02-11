@@ -15,13 +15,21 @@ import SearchBar from "../components/SearchBar"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Img from "../assets/img/homeTop.png"
 import Button from '@material-ui/core/Button';
+import TravelReportCard from "../components/cards/TravelReportCard"
 
 const useStyles = makeStyles((theme) => ({
-  paper: {
-    marginTop: theme.spacing(8),
+  homeTop: {
+    display: "flex",
+    hight: "100vh"
+  },
+  homeTop__btn: {
     display: "flex",
     flexDirection: "column",
-    alignItems:"center"
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  homeTop__img: {
+
   },
   travels: {
     marginTop: theme.spacing(20),
@@ -30,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize:"40px",
     marginTop: theme.spacing(10),
     textAlign:"center"
-  },
-  homeTop: {
-    display: "flex"
   },
   root: {
     display: 'flex',
@@ -54,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "300px",
     height: "80px",
-    position: "relative"
+    // position: "relative"
   },
 }))
 
@@ -73,13 +78,10 @@ const Home = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("yaksfjhak")
-    // history.push("/newAlbumForm")
     history.push("/create-travel")
   }
 
   useEffect(() => {
-    // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
     if (currentUser !== null) {
       col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
         const tempTravels = [];
@@ -93,55 +95,26 @@ const Home = (props) => {
   },[])
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
-      <div className={classes.paper}>
         <div className={classes.homeTop}>
-          <div>
-            <h1 className={classes.pageTitle}>Let's create Travel　Reports!</h1>
+          <div　className={classes.homeTop__btn}>
+            <h1 className={classes.pageTitle}>大事な旅行の思い出を<br/>言葉で残そう！</h1>
             <Button
-        　　　　variant="contained"
-        　　　　color="default"
-        　　　　className={classes.button}
+        　　　　 variant="contained"
+        　　　　 color="default"
+        　　　　 className={classes.button}
     　　　　　　　startIcon={<AddCircleIcon fontSize="large" />}
     　　　　　　　onClick={(e)=>handleClick(e)}
       　　　　　>
-        　　　New Travel　Report
+        　　　  New Travel Report
       　　　　</Button>
           </div>
-          <img src={Img}/>
-          {/* <SearchBar /> */}
-        </div>
-      {/* previously in App.js */}
-        <Grid container maxWidth="xs" justify="center" className={classes.travels} spacing={3}>
-        {/* this map is for displaying albums */}
-          {
-            travels.map(travel => (
-              <Grid item key={travel.name}>
-              <Link to={`/travels/${travel.id}`}>
-                  <Card className={classes.root}>
-                    <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                  <Typography component="h1" variant="h5">{travel.name}</Typography>
-                      {/* <img src={album.image} alt="" /> */}
-                      {/* <img src="http://placekitten.com/g/200/300" alt="" />
-                    </div> */}
-                        </CardContent>
-                      </div>
-                    <CardMedia
-                      className={classes.cover}
-                      image={travel.images ? travel.images[0].url : ""}
-                      alt="album"
-                      title="Live from space album cover"
-                    />
-                </Card>
-              </Link>
-            </Grid>
-            ))
-          }
-          {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
-      </Grid>
+          <div class={classes.homeTop__img}>
+            <img src={Img} />
+          </div>
       </div>
+      <TravelReportCard travels={travels}/>
     </Container>
   );
 }
