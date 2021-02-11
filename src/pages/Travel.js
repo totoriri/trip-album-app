@@ -36,18 +36,26 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+
   },
   travelTitle: {
     marginTop:theme.spacing(5)
   },
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    justifyContent: "center",
+    margin: "0 auto"
+  },
+  tab: {
+    "& .MuiTabs-flexContainer": {
+      justifyContent: "center" // or black
+    }
   },
   footer: {
     textAlign:"center"
-  }
+  },
 }))
 
 function TabPanel(props) {
@@ -130,13 +138,14 @@ function a11yProps(index) {
 
     return (
       <div className={classes.root}>
-        <paper position="static" >
+        <paper square >
           <Tabs
             value={value}
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="off"
             aria-label="scrollable prevent tabs example"
+            className={classes.tab}
           >
             <Tab icon={<HelpIcon/>} aria-label="phone" {...a11yProps(0)} />
             <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
