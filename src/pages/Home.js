@@ -15,13 +15,17 @@ import SearchBar from "../components/SearchBar"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Img from "../assets/img/homeTop.png"
 import Button from '@material-ui/core/Button';
+import TravelReportCard from "../components/cards/TravelReportCard"
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
+    // flexDirection: "column",
+    // alignItems:"center"
+  },
+  homeTop: {
     display: "flex",
-    flexDirection: "column",
-    alignItems:"center"
+    hight: "100vh"
   },
   travels: {
     marginTop: theme.spacing(20),
@@ -31,13 +35,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(10),
     textAlign:"center"
   },
-  homeTop: {
-    display: "flex"
-  },
   root: {
     display: 'flex',
     height: 200,
-    width: 400,
+    // width: 400,
     flex: "1 auto"
   },
   details: {
@@ -90,7 +91,7 @@ const Home = (props) => {
   },[])
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main">
       <CssBaseline />
       <div className={classes.paper}>
         <div className={classes.homeTop}>
@@ -108,31 +109,8 @@ const Home = (props) => {
           </div>
           <img src={Img}/>
         </div>
-
-        <Grid container maxWidth="xs" justify="center" className={classes.travels} spacing={3}>
-          {
-            travels.map(travel => (
-              <Grid item key={travel.name}>
-                <Link to={`/travels/${travel.id}`}>
-                  <Card className={classes.root}>
-                    <div className={classes.details}>
-                      <CardContent className={classes.content}>
-                      <Typography component="h1" variant="h5">{travel.name}</Typography>
-                      </CardContent>
-                    </div>
-                    <CardMedia
-                      className={classes.cover}
-                      image={travel.images ? travel.images[0].url : ""}
-                      alt="album"
-                      title="Live from space album cover"
-                    />
-                  </Card>
-                </Link>
-            </Grid>
-            ))
-          }
-      </Grid>
       </div>
+      <TravelReportCard travels={travels}/>
     </Container>
   );
 }
