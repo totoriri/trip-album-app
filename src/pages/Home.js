@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: 200,
-    // width: 400,
+    width: 400,
     flex: "1 auto"
   },
   details: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "300px",
     height: "80px",
-    position: "relative"
+    // position: "relative"
   },
 }))
 
@@ -73,13 +73,10 @@ const Home = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("yaksfjhak")
-    // history.push("/newAlbumForm")
     history.push("/create-travel")
   }
 
   useEffect(() => {
-    // col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
     if (currentUser !== null) {
       col.where("uid", "==", currentUser.uid).onSnapshot((snapshot) => {
         const tempTravels = [];
@@ -98,7 +95,7 @@ const Home = (props) => {
       <div className={classes.paper}>
         <div className={classes.homeTop}>
           <div>
-            <h1 className={classes.pageTitle}>Let's create Travel　Reports!</h1>
+            <h1 className={classes.pageTitle}>旅行の思い出を言葉で残そう！</h1>
             <Button
         　　　　variant="contained"
         　　　　color="default"
@@ -106,40 +103,34 @@ const Home = (props) => {
     　　　　　　　startIcon={<AddCircleIcon fontSize="large" />}
     　　　　　　　onClick={(e)=>handleClick(e)}
       　　　　　>
-        　　　New Travel　Report
+        　　　New Travel Report
       　　　　</Button>
           </div>
           <img src={Img}/>
-          {/* <SearchBar /> */}
         </div>
-      {/* previously in App.js */}
+
         <Grid container maxWidth="xs" justify="center" className={classes.travels} spacing={3}>
-        {/* this map is for displaying albums */}
           {
             travels.map(travel => (
               <Grid item key={travel.name}>
-              <Link to={`/travels/${travel.id}`}>
+                <Link to={`/travels/${travel.id}`}>
                   <Card className={classes.root}>
                     <div className={classes.details}>
-                    <CardContent className={classes.content}>
-                  <Typography component="h1" variant="h5">{travel.name}</Typography>
-                      {/* <img src={album.image} alt="" /> */}
-                      {/* <img src="http://placekitten.com/g/200/300" alt="" />
-                    </div> */}
-                        </CardContent>
-                      </div>
+                      <CardContent className={classes.content}>
+                      <Typography component="h1" variant="h5">{travel.name}</Typography>
+                      </CardContent>
+                    </div>
                     <CardMedia
                       className={classes.cover}
                       image={travel.images ? travel.images[0].url : ""}
                       alt="album"
                       title="Live from space album cover"
                     />
-                </Card>
-              </Link>
+                  </Card>
+                </Link>
             </Grid>
             ))
           }
-          {/* <AddCircleIcon fontSize='large' className={classes.addCircleIcon}/> */}
       </Grid>
       </div>
     </Container>
