@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(10),
   },
 }))
 
@@ -51,11 +51,10 @@ export const NewPhotoForm = ({history,location}) => {
     }else{
       return;
     }
-    history.push(`/travels/${currentTravel}`)
+    // history.push(`/travels/${currentTravel}`)
   }
-
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.form}>
       <CssBaseline />
     {/* <input type="file" onChange={onFileChange}/> */}
     {/* <button onClick={onUpload}>Upload image</button> */}
