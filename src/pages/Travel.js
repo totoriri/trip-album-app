@@ -25,7 +25,6 @@ import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
 import { data } from "./Data"
-import ExpandBtn from "../components/buttons/ExpandBtn"
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -179,10 +178,6 @@ function a11yProps(index) {
             tags.map((item,index) => {
               let Index = index + 1;
               return (
-                // <div>
-                //   <h3>Q. {item.title}</h3>
-                //   <ExpandBtn/>
-                // </div>
                 <Card className={classes.root}>
                   <CardHeader
                     avatar={
