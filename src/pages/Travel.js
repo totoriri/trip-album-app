@@ -26,9 +26,20 @@ import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
 import { data } from "./Data"
 import ExpandBtn from "../components/buttons/ExpandBtn"
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
+import ModalForm from "../components/modals/ModalForm"
 
 
 const db = app.firestore();
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -56,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     textAlign:"center"
   },
+  cardHeader: {
+    variant:"h5",
+    fontweight: "bold",
+    color: "red"
+  }
 }))
 
 function TabPanel(props) {
@@ -91,15 +107,20 @@ function a11yProps(index) {
   };
 }
 
-// const budgets = arrayOfBudget.map((obj)=> {return Object.assign({}, obj)});
 
 
+
+// こっからexport default
  const Travels = () => {
 
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-  const [tags,setTag] = useState([])
+   const [tags, setTag] = useState([])
+   const [expanded, setExpanded] = React.useState(false);
+   const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
@@ -128,6 +149,8 @@ function a11yProps(index) {
     })();
   }, []);
 
+
+  // タブに関する部分
   const  ScrollableTabsButtonPrevent = ()=> {
     const [value, setValue] = React.useState(0);
 
@@ -156,22 +179,63 @@ function a11yProps(index) {
             tags.map((item,index) => {
               let Index = index + 1;
               return (
-                <div>
-                  <h3>Q. {item.title}</h3>
-                  <ExpandBtn/>
-                </div>
+                // <div>
+                //   <h3>Q. {item.title}</h3>
+                //   <ExpandBtn/>
+                // </div>
+                <Card className={classes.root}>
+                  <CardHeader
+                    avatar={
+                      <Avatar aria-label="recipe" className={classes.avatar}>
+                        Q
+                      </Avatar>
+                    }
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                      // title={item.title}
+                      title={
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {item.title}
+                      </Typography>
+                                }
+                  />
+                  <CardMedia
+                    className={classes.media}
+                    image="/static/images/cards/paella.jpg"
+                    title="Paella dish"
+                  />
+                  <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton
+                      className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                      })}
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="show more"
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </CardActions>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      <ModalForm travel={travel}/>
+                    </CardContent>
+                  </Collapse>
+                </Card>
               )
             })
-          }
-          {
-
-
           }
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-        <Grid container spacing={10} justify="center" className={classes.root}>
-          {images.map((image) => (
+          <Grid container spacing={10} justify="center" className={classes.root}>
+            {images.map((image) => (
             <Grid item　xs={4}  key={image.name}>
               <Card>
                 {/* <img src={image.url} alt="album" /> */}
@@ -206,7 +270,7 @@ function a11yProps(index) {
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton history={history} currentTravel={travel}/>
+        {/* <NewPhotoButton history={history} currentTravel={travel}/> */}
       </footer>
       </Container>
   );

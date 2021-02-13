@@ -1,8 +1,21 @@
-import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import NewPhotoForm from "../../pages/forms/NewPhotoForm"
+import React, {useState,useRouteMatch} from 'react'
+import firebase from 'firebase'
+import { app } from '../../base'
+import {withRouter} from "react-router-dom"
+
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+
+const db = app.firestore()
+const storage = app.storage();
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -35,9 +48,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function TransitionsModal() {
+
+export default function TransitionsModal({travel}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [currentTravel,setCurrentTravel] = useState([])
 
   const handleOpen = () => {
     setOpen(true);
@@ -46,6 +61,40 @@ export default function TransitionsModal() {
   const handleClose = () => {
     setOpen(false);
   };
+
+
+  const [file, setFile] = useState(null)
+
+  // const match = useRouteMatch("/travels/:travel");
+  // console.log(match)
+  // const { travel } = match.params;
+  // console.log(travel)
+
+
+
+  const onFileChange = (e) => {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0])
+  }
+
+
+  const onUpload = async () => {
+    const storageRef = storage.ref()
+    if (file) {
+      const fileRef = storageRef.child(file.name)
+      await fileRef.put(file)
+      db.collection("travels").doc(travel).update({
+        images: firebase.firestore.FieldValue.arrayUnion({
+          name: file.name,
+          url: await fileRef.getDownloadURL()
+        })
+      })
+    }else{
+      return;
+    }
+    // history.push(`/travels/${currentTravel}`)
+  }
+
 
   return (
     <div>
@@ -66,8 +115,33 @@ export default function TransitionsModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
+          <Container component="main" maxWidth="xs" className={classes.form}>
+      <CssBaseline />
+    {/* <input type="file" onChange={onFileChange}/> */}
+    {/* <button onClick={onUpload}>Upload image</button> */}
+      <TextField
+        variant="outlined"
+        onChange={onFileChange}
+            margin="normal"
+            required
+            fullWidth
+            name="file"
+            // label="File"
+            type="file"
+            id="file"
+            />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+          className={classes.submit}
+          onClick={onUpload}
+            >
+            Upload Image
+            </Button>
+    </Container>
+            {/* <NewPhotoButton/> */}
           </div>
         </Fade>
       </Modal>
