@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link,useHistory } from "react-router-dom";
 import { NewPhotoForm } from "./forms/NewPhotoForm";
 import { app } from "../base";
-import NewPhotoButton from "../components/buttons/NewPhotoButton"
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -24,10 +23,21 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import {data} from "./Data"
+import { data } from "./Data"
+import CardHeader from '@material-ui/core/CardHeader';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
+import ModalForm from "../components/modals/ModalForm"
 
 
 const db = app.firestore();
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,17 +45,30 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+
   },
   travelTitle: {
     marginTop:theme.spacing(5)
   },
   root: {
-    flexGrow: 1,
+    // flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
+    justifyContent: "center",
+    margin: "0 auto"
+  },
+  tab: {
+    "& .MuiTabs-flexContainer": {
+      justifyContent: "center" // or black
+    }
   },
   footer: {
     textAlign:"center"
+  },
+  cardHeader: {
+    variant:"h5",
+    fontweight: "bold",
+    color: "red"
   }
 }))
 
@@ -82,15 +105,20 @@ function a11yProps(index) {
   };
 }
 
-// const budgets = arrayOfBudget.map((obj)=> {return Object.assign({}, obj)});
 
 
+
+// こっからexport default
  const Travels = () => {
 
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-  const [tags,setTag] = useState([])
+   const [tags, setTag] = useState([])
+   const [expanded, setExpanded] = React.useState(false);
+   const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
@@ -119,6 +147,8 @@ function a11yProps(index) {
     })();
   }, []);
 
+
+  // タブに関する部分
   const  ScrollableTabsButtonPrevent = ()=> {
     const [value, setValue] = React.useState(0);
 
@@ -129,37 +159,77 @@ function a11yProps(index) {
 
     return (
       <div className={classes.root}>
-        <paper position="static" >
+        <paper square >
           <Tabs
             value={value}
             onChange={handleChange}
             variant="scrollable"
             scrollButtons="off"
             aria-label="scrollable prevent tabs example"
+            className={classes.tab}
           >
             <Tab icon={<HelpIcon/>} aria-label="phone" {...a11yProps(0)} />
             <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
           </Tabs>
         </paper>
         <TabPanel value={value} index={0}>
-          Default Question
           {
             tags.map((item,index) => {
               let Index = index + 1;
               return (
-                <h1>Q. {item.title}</h1>
+                <Card className={classes.root}>
+                  <CardHeader
+                    avatar={
+                      <Avatar aria-label="recipe" className={classes.avatar}>
+                        Q
+                      </Avatar>
+                    }
+                    action={
+                      <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                      </IconButton>
+                    }
+                      // title={item.title}
+                      title={
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {item.title}
+                      </Typography>
+                                }
+                  />
+                  <CardMedia
+                    className={classes.media}
+                    image="/static/images/cards/paella.jpg"
+                    title="Paella dish"
+                  />
+                  <CardActions disableSpacing>
+                    <IconButton aria-label="add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton
+                      className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                      })}
+                      onClick={handleExpandClick}
+                      aria-expanded={expanded}
+                      aria-label="show more"
+                    >
+                      <ExpandMoreIcon />
+                    </IconButton>
+                  </CardActions>
+                  <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent>
+                      <ModalForm travel={travel}/>
+                    </CardContent>
+                  </Collapse>
+                </Card>
               )
             })
-          }
-          {
-
-
           }
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-        <Grid container spacing={10} justify="center" className={classes.root}>
-          {images.map((image) => (
+          <Grid container spacing={10} justify="center" className={classes.root}>
+            {images.map((image) => (
             <Grid item　xs={4}  key={image.name}>
               <Card>
                 {/* <img src={image.url} alt="album" /> */}
@@ -194,7 +264,7 @@ function a11yProps(index) {
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        <NewPhotoButton history={history} currentTravel={travel}/>
+        {/* <NewPhotoButton history={history} currentTravel={travel}/> */}
       </footer>
       </Container>
   );
