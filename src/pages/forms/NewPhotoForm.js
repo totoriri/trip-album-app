@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(10),
   },
 }))
 
@@ -27,35 +27,43 @@ export const NewPhotoForm = ({history,location}) => {
   const classes = useStyles();
   const [file, setFile] = useState(null)
 
+  // const match = useRouteMatch("/travels/:travel");
+  // console.log(match)
+  // const { travel } = match.params;
+
+
+
   const onFileChange = (e) => {
     console.log(e.target.files[0]);
     setFile(e.target.files[0])
   }
 
-  // console.log(props.match)
-  // console.log(props)
-  const { currentTravel } = location.state;
-  console.log(location)
 
   const onUpload = async () => {
-    const storageRef = storage.ref()
-    if (file) {
-      const fileRef = storageRef.child(file.name)
-      await fileRef.put(file)
-      db.collection("travels").doc(currentTravel).update({
-        images: firebase.firestore.FieldValue.arrayUnion({
-          name: file.name,
-          url: await fileRef.getDownloadURL()
-        })
-      })
-    }else{
-      return;
-    }
-    history.push(`/travels/${currentTravel}`)
+    // const storageRef = storage.ref()
+    // if (file) {
+    //   const fileRef = storageRef.child(file.name)
+    //   await fileRef.put(file)
+    //   db.collection("travels").doc(travel).update({
+    //     images: firebase.firestore.FieldValue.arrayUnion({
+    //       name: file.name,
+    //       url: await fileRef.getDownloadURL()
+    //     })
+    //   })
+    // }else{
+    //   return;
+    // }
+    // history.push(`/travels/${currentTravel}`)
   }
 
+  // useEffect( () => {
+  //   (async() => {
+
+  //   })()
+  // }, [])
+
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" className={classes.form}>
       <CssBaseline />
     {/* <input type="file" onChange={onFileChange}/> */}
     {/* <button onClick={onUpload}>Upload image</button> */}

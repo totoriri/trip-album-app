@@ -69,7 +69,10 @@ export default function TransitionsModal({travel}) {
 
 
   const [file, setFile] = useState(null)
+<<<<<<< HEAD
   const [answerText,setAnswerText] = useState("")
+=======
+>>>>>>> 035438fb25ebdec5f42e4c3b813f534ac673c6bb
 
   // const match = useRouteMatch("/travels/:travel");
   // console.log(match)
@@ -83,6 +86,7 @@ export default function TransitionsModal({travel}) {
     setFile(e.target.files[0])
   }
 
+<<<<<<< HEAD
   const onAnswerTextChange = (e) => {
     setAnswerText(e.target.value)
   }
