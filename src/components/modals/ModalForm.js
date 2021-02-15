@@ -84,7 +84,6 @@ export default function TransitionsModal({travel}) {
     setFile(e.target.files[0])
   }
 
-<<<<<<< HEAD
   const onAnswerTextChange = (e) => {
     setAnswerText(e.target.value)
   }
