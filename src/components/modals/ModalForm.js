@@ -89,19 +89,21 @@ export default function TransitionsModal({travel}) {
 
 
   const onUpload = async () => {
-    const storageRef = storage.ref()
-    if (file) {
-      const fileRef = storageRef.child(file.name)
-      await fileRef.put(file)
-      db.collection("travels").doc(travel).update({
-        images: firebase.firestore.FieldValue.arrayUnion({
-          name: file.name,
-          url: await fileRef.getDownloadURL()
-        })
-      })
-    }else{
-      return;
-    }
+    // const storageRef = storage.ref()
+    // if (file) {
+    //   const fileRef = storageRef.child(file.name)
+    //   await fileRef.put(file)
+    //   db.collection("travels").doc(travel).update({
+    //     images: firebase.firestore.FieldValue.arrayUnion({
+    //       name: file.name,
+    //       url: await fileRef.getDownloadURL()
+    //     })
+    //   })
+    // }else{
+    //   return;
+    // }
+    console.log(file)
+    console.log(answerText)
     // history.push(`/travels/${currentTravel}`)
   }
 
@@ -126,7 +128,7 @@ export default function TransitionsModal({travel}) {
         <Fade in={open}>
           <div className={classes.paper}>
           <Container component="main" maxWidth="xs" className={classes.form}>
-      <CssBaseline />
+              <CssBaseline />
     {/* <input type="file" onChange={onFileChange}/> */}
               {/* <button onClick={onUpload}>Upload image</button> */}
               {/* <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Minimum 3 rows" /> */}
