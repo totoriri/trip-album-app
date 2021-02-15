@@ -38,7 +38,7 @@ const NewTravelForm = ({ history }) => {
 
   const [travelName, setTravelName] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const [selectedQuestions, setSelectedQuestions] = useState([])
+  const [selectedQuestions, setSelectedQuestions] = useState([defaultQuestions[1], defaultQuestions[3], defaultQuestions[4]])
 
   const onTravelNameChange = (event) => {
     setTravelName(event.target.value)
