@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const db = app.firestore()
 const storage = app.storage();
@@ -46,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
       cursor: "pointer",
       backgroundColor: "#ffd700"
     }
-  },
-  textarea: {
-    width: "100%",
-    fontSize: "1.3rem"
   }
 }));
 
@@ -69,7 +64,6 @@ export default function TransitionsModal({travel}) {
 
 
   const [file, setFile] = useState(null)
-  const [answerText,setAnswerText] = useState("")
 
   // const match = useRouteMatch("/travels/:travel");
   // console.log(match)
@@ -83,27 +77,21 @@ export default function TransitionsModal({travel}) {
     setFile(e.target.files[0])
   }
 
-  const onAnswerTextChange = (e) => {
-    setAnswerText(e.target.value)
-  }
-
 
   const onUpload = async () => {
-    // const storageRef = storage.ref()
-    // if (file) {
-    //   const fileRef = storageRef.child(file.name)
-    //   await fileRef.put(file)
-    //   db.collection("travels").doc(travel).update({
-    //     images: firebase.firestore.FieldValue.arrayUnion({
-    //       name: file.name,
-    //       url: await fileRef.getDownloadURL()
-    //     })
-    //   })
-    // }else{
-    //   return;
-    // }
-    console.log(file)
-    console.log(answerText)
+    const storageRef = storage.ref()
+    if (file) {
+      const fileRef = storageRef.child(file.name)
+      await fileRef.put(file)
+      db.collection("travels").doc(travel).update({
+        images: firebase.firestore.FieldValue.arrayUnion({
+          name: file.name,
+          url: await fileRef.getDownloadURL()
+        })
+      })
+    }else{
+      return;
+    }
     // history.push(`/travels/${currentTravel}`)
   }
 
@@ -128,24 +116,9 @@ export default function TransitionsModal({travel}) {
         <Fade in={open}>
           <div className={classes.paper}>
           <Container component="main" maxWidth="xs" className={classes.form}>
-              <CssBaseline />
+      <CssBaseline />
     {/* <input type="file" onChange={onFileChange}/> */}
-              {/* <button onClick={onUpload}>Upload image</button> */}
-              {/* <TextareaAutosize aria-label="minimum height" rowsMin={5} placeholder="Minimum 3 rows" /> */}
-            <TextareaAutosize
-            value={answerText}
-            onChange={onAnswerTextChange}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            className={classes.textarea}
-            name="answerText"
-            label="Answer Text"
-            type="text"
-            id="answerText"
-            rowsMin={5}
-            />
+    {/* <button onClick={onUpload}>Upload image</button> */}
       <TextField
         variant="outlined"
         onChange={onFileChange}
