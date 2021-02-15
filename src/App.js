@@ -50,10 +50,10 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           {/* <Route path={`/${album.id}`} component={Album}/> */}
-          <Route path="/travels/:travel" component={Travel} />
-          <Route path="/create-travel" component={NewTravelForm}/>
-          <Route path="/addNewPhoto" component={NewPhotoForm}/>
-          <Route path="/users/:userID" component={Profile} />
+          <PrivateRoute path="/travels/:travel" component={Travel} />
+          <PrivateRoute path="/create-travel" component={NewTravelForm}/>
+          <PrivateRoute path="/addNewPhoto" component={NewPhotoForm}/>
+          <PrivateRoute path="/users/:userID" component={Profile} />
           </Switch>
       </Router>
     // </AuthProvider>
