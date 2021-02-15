@@ -34,6 +34,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
 import ModalForm from "../components/modals/ModalForm"
+import QuestionCard from "../components/cards/QuestionCard"
 
 
 const db = app.firestore();
@@ -177,51 +178,52 @@ function a11yProps(index) {
             tags.map((item,index) => {
               let Index = index + 1;
               return (
-                <Card className={classes.root}>
-                  <CardHeader
-                    avatar={
-                      <Avatar aria-label="recipe" className={classes.avatar}>
-                        Q
-                      </Avatar>
-                    }
-                    action={
-                      <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                      </IconButton>
-                    }
-                      // title={item.title}
-                      title={
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {item.title}
-                      </Typography>
-                                }
-                  />
-                  <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/paella.jpg"
-                    title="Paella dish"
-                  />
-                  <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
-                    <IconButton
-                      className={clsx(classes.expand, {
-                        [classes.expandOpen]: expanded,
-                      })}
-                      onClick={handleExpandClick}
-                      aria-expanded={expanded}
-                      aria-label="show more"
-                    >
-                      <ExpandMoreIcon />
-                    </IconButton>
-                  </CardActions>
-                  <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                      <ModalForm travel={travel}/>
-                    </CardContent>
-                  </Collapse>
-                </Card>
+                <QuestionCard item={item} travel={travel}/>
+                // <Card className={classes.root}>
+                //   <CardHeader
+                //     avatar={
+                //       <Avatar aria-label="recipe" className={classes.avatar}>
+                //         Q
+                //       </Avatar>
+                //     }
+                //     action={
+                //       <IconButton aria-label="settings">
+                //         <MoreVertIcon />
+                //       </IconButton>
+                //     }
+                //       // title={item.title}
+                //       title={
+                //       <Typography gutterBottom variant="h5" component="h2">
+                //         {item.title}
+                //       </Typography>
+                //                 }
+                //   />
+                //   <CardMedia
+                //     className={classes.media}
+                //     image="/static/images/cards/paella.jpg"
+                //     title="Paella dish"
+                //   />
+                //   <CardActions disableSpacing>
+                //     <IconButton aria-label="add to favorites">
+                //       <FavoriteIcon />
+                //     </IconButton>
+                //     <IconButton
+                //       className={clsx(classes.expand, {
+                //         [classes.expandOpen]: expanded,
+                //       })}
+                //       onClick={handleExpandClick}
+                //       aria-expanded={expanded}
+                //       aria-label="show more"
+                //     >
+                //       <ExpandMoreIcon />
+                //     </IconButton>
+                //   </CardActions>
+                //   <Collapse in={expanded} timeout="auto" unmountOnExit>
+                //     <CardContent>
+                //       <ModalForm travel={travel}/>
+                //     </CardContent>
+                //   </Collapse>
+                // </Card>
               )
             })
           }
