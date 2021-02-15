@@ -23,7 +23,7 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import { data } from "../../pages/Data"
+import { defaultQuestions } from "../../pages/DefaultQuestions"
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -75,7 +75,7 @@ const QuestionCard = ({item,travel}) => {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-   const [tags, setTag] = useState([])
+   const [selectedQuestions, setSelectedQuestions] = useState([])
    const [expanded, setExpanded] = React.useState(false);
    const handleExpandClick = () => {
     setExpanded(!expanded);

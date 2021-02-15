@@ -1,4 +1,4 @@
-export const data = [
+export const defaultQuestions = [
   { title: '一番印象に残ってる場所は？', type: "place" },
   { title: 'どんな料理が美味しかった？', type: "food" },
   { title: '現地で新しく覚えた言葉は？', type: "word" },

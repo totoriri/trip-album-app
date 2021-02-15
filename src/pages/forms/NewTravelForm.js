@@ -14,7 +14,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { data } from "../Data"
+import { defaultQuestions } from "../DefaultQuestions"
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const db = app.firestore();
@@ -38,15 +38,15 @@ const NewTravelForm = ({ history }) => {
 
   const [travelName, setTravelName] = useState("");
   const { currentUser } = useContext(AuthContext);
-  const [tags, setTags] = useState([])
+  const [selectedQuestions, setSelectedQuestions] = useState([])
 
   const onTravelNameChange = (event) => {
     setTravelName(event.target.value)
   }
 
-  const handleTagChange = (e, value) => {
+  const handleSelectedQuestionsChange = (e, value) => {
     console.log(value)
-    setTags(value)
+    setSelectedQuestions(value)
   }
 
 
@@ -57,7 +57,7 @@ const NewTravelForm = ({ history }) => {
         isComplete: false,
         createdAt: new Date(),
         name: travelName,
-        tags:tags
+        selectedQuestions:selectedQuestions
       })
       setTravelName("")
       history.push("/")
@@ -85,10 +85,10 @@ const NewTravelForm = ({ history }) => {
         multiple
         limitTags={2}
         id="multiple-limit-tags"
-        options={data}
-        onChange={handleTagChange}
+        options={defaultQuestions}
+        onChange={handleSelectedQuestionsChange}
         getOptionLabel={(option) => option.title}
-        defaultValue={[data[1], data[3], data[4]]}
+        defaultValue={[defaultQuestions[1], defaultQuestions[3], defaultQuestions[4]]}
         renderInput={(params) => (
           <TextField
             {...params}

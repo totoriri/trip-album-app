@@ -23,7 +23,7 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import { data } from "./Data"
+import { defaultQuestions } from "./DefaultQuestions"
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -115,7 +115,7 @@ function a11yProps(index) {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-   const [tags, setTag] = useState([])
+   const [selectedQuestions, setSelectedQuestions] = useState([])
    const [expanded, setExpanded] = React.useState(false);
    const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -136,7 +136,7 @@ function a11yProps(index) {
         .onSnapshot((doc) => {
           if (doc.exists) {
             console.log("Document data:", doc.data())
-            setTag(doc.data().tags)
+            setSelectedQuestions(doc.data().selectedQuestions)
             setImages(doc.data().images || [])
             setTravelName(doc.data().name || []);
         } else {
@@ -175,7 +175,7 @@ function a11yProps(index) {
         </paper>
         <TabPanel value={value} index={0}>
           {
-            tags.map((item,index) => {
+            selectedQuestions.map((item,index) => {
               let Index = index + 1;
               return (
                 <QuestionCard item={item} travel={travel}/>
