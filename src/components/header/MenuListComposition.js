@@ -69,7 +69,6 @@ export default function CustomizedMenus({history}) {
 
   const handleLogout = async() => {
     await logout();
-    history.push("/login")
   }
 
   return (
