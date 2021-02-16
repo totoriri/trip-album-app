@@ -179,77 +179,12 @@ function a11yProps(index) {
               let Index = index + 1;
               return (
                 <QuestionCard item={item} travel={travel}/>
-                // <Card className={classes.root}>
-                //   <CardHeader
-                //     avatar={
-                //       <Avatar aria-label="recipe" className={classes.avatar}>
-                //         Q
-                //       </Avatar>
-                //     }
-                //     action={
-                //       <IconButton aria-label="settings">
-                //         <MoreVertIcon />
-                //       </IconButton>
-                //     }
-                //       // title={item.title}
-                //       title={
-                //       <Typography gutterBottom variant="h5" component="h2">
-                //         {item.title}
-                //       </Typography>
-                //                 }
-                //   />
-                //   <CardMedia
-                //     className={classes.media}
-                //     image="/static/images/cards/paella.jpg"
-                //     title="Paella dish"
-                //   />
-                //   <CardActions disableSpacing>
-                //     <IconButton aria-label="add to favorites">
-                //       <FavoriteIcon />
-                //     </IconButton>
-                //     <IconButton
-                //       className={clsx(classes.expand, {
-                //         [classes.expandOpen]: expanded,
-                //       })}
-                //       onClick={handleExpandClick}
-                //       aria-expanded={expanded}
-                //       aria-label="show more"
-                //     >
-                //       <ExpandMoreIcon />
-                //     </IconButton>
-                //   </CardActions>
-                //   <Collapse in={expanded} timeout="auto" unmountOnExit>
-                //     <CardContent>
-                //       <ModalForm travel={travel}/>
-                //     </CardContent>
-                //   </Collapse>
-                // </Card>
               )
             })
           }
 
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <Grid container spacing={10} justify="center" className={classes.root}>
-            {images.map((image) => (
-            <Grid item　xs={4}  key={image.name}>
-              <Card>
-                {/* <img src={image.url} alt="album" /> */}
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                  height="300"
-                  width="auto"
-                    image={image.url}
-                    title="Contemplative Reptile"
-                  />
-              </Card>
-            </Grid>
-          ))}
-          </Grid>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
         </TabPanel>
       </div>
     );
