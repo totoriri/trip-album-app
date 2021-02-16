@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link,useHistory } from "react-router-dom";
 import { NewPhotoForm } from "../../pages/forms/NewPhotoForm";
 // import { app } from "../base";
+import { withStyles } from '@material-ui/core/styles';
+import Rating from '@material-ui/lab/Rating';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -68,6 +70,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+const StyledRating = withStyles({
+  iconFilled: {
+    color: '#ff6d75',
+  },
+  iconHover: {
+    color: '#ff3d47',
+  },
+})(Rating);
+
 
 
 
@@ -75,14 +86,20 @@ const QuestionCard = ({item,travel}) => {
   const classes = useStyles();
   const [images, setImages] = useState([]);
    const [travelName, setTravelName] = useState("");
-   const [selectedQuestions, setSelectedQuestions] = useState([])
+    const [selectedQuestions, setSelectedQuestions] = useState([])
+    const [isRated,setIsRated] = useState(false)
    const [expanded, setExpanded] = React.useState(false);
    const handleExpandClick = () => {
     setExpanded(!expanded);
-  };
+   };
+
+    const onRatingChange = () => {
+    setIsRated(!isRated)
+    console.log(isRated)
+    }
 
 
-  return (
+                return (
                 <Card className={classes.root}>
                   <CardHeader
                     avatar={
@@ -108,9 +125,25 @@ const QuestionCard = ({item,travel}) => {
                     title="Paella dish"
                   />
                   <CardActions disableSpacing>
-                    <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
-                    </IconButton>
+                  {/* <StyledRating
+                    name="customized-color"
+                    defaultValue={0}
+                        onChange={onRatingChange}
+                    getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                    precision={1}
+                    icon={<FavoriteIcon fontSize="inherit" />}
+                    max={1}
+                  /> */}
+                  <StyledRating
+                    name={item.title}
+                    defaultValue={0}
+                    onChange={onRatingChange}
+                    getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                    precision={1}
+                    icon={<FavoriteIcon fontSize="inherit" />}
+                    max={1}
+                      />
+
                     <IconButton
                       className={clsx(classes.expand, {
                         [classes.expandOpen]: expanded,
