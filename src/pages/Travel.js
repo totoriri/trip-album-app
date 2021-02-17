@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useRouteMatch, Link,useHistory } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useRouteMatch, Link, useHistory } from 'react-router-dom';
 // import { NewPhotoForm } from "../components/forms/NewPhotoForm";
-import { app } from "../base";
+import { app } from '../base';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -34,11 +34,9 @@ import Box from '@material-ui/core/Box';
 // import clsx from 'clsx';
 // import Collapse from '@material-ui/core/Collapse';
 // import ModalForm from "../components/forms/ModalForm"
-import QuestionCard from "../components/cards/QuestionCard"
-
+import QuestionCard from '../components/cards/QuestionCard';
 
 const db = app.firestore();
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,32 +44,31 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-
   },
   travelTitle: {
-    marginTop:theme.spacing(5)
+    marginTop: theme.spacing(5),
   },
   root: {
     // flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
-    justifyContent: "center",
-    margin: "0 auto"
+    justifyContent: 'center',
+    margin: '0 auto',
   },
   tab: {
-    "& .MuiTabs-flexContainer": {
-      justifyContent: "center" // or black
-    }
+    '& .MuiTabs-flexContainer': {
+      justifyContent: 'center', // or black
+    },
   },
   footer: {
-    textAlign:"center"
+    textAlign: 'center',
   },
   cardHeader: {
-    variant:"h5",
-    fontweight: "bold",
-    color: "red"
-  }
-}))
+    variant: 'h5',
+    fontweight: 'bold',
+    color: 'red',
+  },
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -106,59 +103,52 @@ function a11yProps(index) {
   };
 }
 
-
-
-
 // こっからexport default
- const Travels = () => {
-
+const Travels = () => {
   const classes = useStyles();
   const [images, setImages] = useState([]);
-   const [travelName, setTravelName] = useState("");
-   const [selectedQuestions, setSelectedQuestions] = useState([])
-   const [expanded, setExpanded] = React.useState(false);
-   const handleExpandClick = () => {
+  const [travelName, setTravelName] = useState('');
+  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [expanded, setExpanded] = React.useState(false);
+  const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const match = useRouteMatch("/travels/:travel");
+  const match = useRouteMatch('/travels/:travel');
   const { travel } = match.params;
-  console.log(match)
-   console.log(travel)
-   const history = useHistory();
+  console.log(match);
+  console.log(travel);
+  const history = useHistory();
 
   useEffect(() => {
     (async () => {
       await db
-        .collection("travels")
+        .collection('travels')
         .doc(travel)
         .onSnapshot((doc) => {
           if (doc.exists) {
-            console.log("Document data:", doc.data())
-            setSelectedQuestions(doc.data().selectedQuestions)
-            setImages(doc.data().images || [])
+            console.log('Document data:', doc.data());
+            setSelectedQuestions(doc.data().selectedQuestions);
+            setImages(doc.data().images || []);
             setTravelName(doc.data().name || []);
-        } else {
-            console.log("No such document!");
-        }
-
-    })
+          } else {
+            console.log('No such document!');
+          }
+        });
     })();
   }, []);
 
-
   // タブに関する部分
-  const  ScrollableTabsButtonPrevent = ()=> {
+  const ScrollableTabsButtonPrevent = () => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
 
-
     return (
       <div className={classes.root}>
-        <paper square >
+        <paper square>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -167,41 +157,34 @@ function a11yProps(index) {
             aria-label="scrollable prevent tabs example"
             className={classes.tab}
           >
-            <Tab icon={<HelpIcon/>} aria-label="phone" {...a11yProps(0)} />
+            <Tab icon={<HelpIcon />} aria-label="phone" {...a11yProps(0)} />
             <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
           </Tabs>
         </paper>
         <TabPanel value={value} index={0}>
-          {
-            selectedQuestions.map((item,index) => {
-              let Index = index + 1;
-              return (
-                <QuestionCard item={item} travel={travel}/>
-              )
-            })
-          }
-
+          {selectedQuestions.map((item, index) => {
+            let Index = index + 1;
+            return <QuestionCard item={item} travel={travel} />;
+          })}
         </TabPanel>
-        <TabPanel value={value} index={1}>
-        </TabPanel>
+        <TabPanel value={value} index={1}></TabPanel>
       </div>
     );
-  }
-
-
+  };
 
   return (
     <Container component="main">
       <section className={classes.paper}>
         <header>
-          <Typography className={classes.travelTitle} component="h1" variant="h3">{travelName}</Typography>
+          <Typography className={classes.travelTitle} component="h1" variant="h3">
+            {travelName}
+          </Typography>
         </header>
-        <ScrollableTabsButtonPrevent/>
+        <ScrollableTabsButtonPrevent />
       </section>
-      <footer className={classes.footer}>
-      </footer>
-      </Container>
+      <footer className={classes.footer}></footer>
+    </Container>
   );
- };
+};
 
 export default Travels;

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { AuthContext } from "../../context/AuthContext"
-import {Link} from "react-router-dom"
+import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
@@ -42,7 +42,7 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function CustomizedMenus({history}) {
+export default function CustomizedMenus({ history }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { currentUser } = useContext(AuthContext);
   const { logout } = useContext(AuthContext);
@@ -55,9 +55,9 @@ export default function CustomizedMenus({history}) {
     setAnchorEl(null);
   };
 
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     await logout();
-  }
+  };
 
   return (
     <div>
@@ -70,31 +70,24 @@ export default function CustomizedMenus({history}) {
       >
         Open Menu
       </Button>
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
+      <StyledMenu id="customized-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
         <Link to={`/users/${currentUser.uid}`}>
-        <StyledMenuItem>
-          <ListItemIcon>
+          <StyledMenuItem>
+            <ListItemIcon>
               <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Profiles" />
+            </ListItemIcon>
+            <ListItemText primary="Profiles" />
           </StyledMenuItem>
-            </Link>
+        </Link>
         <StyledMenuItem>
           <Button onClick={handleLogout}>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Logout" />
+            <ListItemIcon>
+              <DraftsIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
           </Button>
         </StyledMenuItem>
       </StyledMenu>
     </div>
   );
 }
-

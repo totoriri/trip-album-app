@@ -9,13 +9,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { Link } from "react-router-dom"
-import DefaultImg from "../../assets/img/candy.jpg"
+import { Link } from 'react-router-dom';
+import DefaultImg from '../../assets/img/candy.jpg';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    display: "flex",
-    justifyContent: "space-evenly"
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
   root: {
     maxWidth: 345,
@@ -39,43 +39,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({travels}) {
+export default function RecipeReviewCard({ travels }) {
   const classes = useStyles();
 
   return (
     <div class="container" className={classes.container}>
-      {
-        travels.map(travel => (
-          <Card className={classes.root} key={travel.name}>
-            <Link to={`/travels/${travel.id}`}>
-          <CardHeader avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-          }
-          action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-          }
-          title={travel.name}
-          subheader="September 14, 2016"
-          />
-          <CardMedia
-            className={classes.media}
-            image={travel.images ? travel.images[0].url : DefaultImg}
-            title="Paella dish"
-          />
-          <CardContent>
-            <Typography variant="body2" color="textSecondary"   component="p">
-            This impressive paella is a perfect party dish and a fun  meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels,  if you like.
-            </Typography>
-          </CardContent>
-        </Link>
+      {travels.map((travel) => (
+        <Card className={classes.root} key={travel.name}>
+          <Link to={`/travels/${travel.id}`}>
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" className={classes.avatar}>
+                  R
+                </Avatar>
+              }
+              action={
+                <IconButton aria-label="settings">
+                  <MoreVertIcon />
+                </IconButton>
+              }
+              title={travel.name}
+              subheader="September 14, 2016"
+            />
+            <CardMedia
+              className={classes.media}
+              image={travel.images ? travel.images[0].url : DefaultImg}
+              title="Paella dish"
+            />
+            <CardContent>
+              <Typography variant="body2" color="textSecondary" component="p">
+                This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1
+                cup of frozen peas along with the mussels, if you like.
+              </Typography>
+            </CardContent>
+          </Link>
         </Card>
-        ))
-      }
+      ))}
     </div>
   );
 }

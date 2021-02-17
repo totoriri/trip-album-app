@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import React, { useContext } from 'react';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -37,17 +37,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignUp = ({ history }) => {
-
   const classes = useStyles();
 
   const { signup } = useContext(AuthContext);
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const {email, password} = event.target.elements;
-    console.log(email.value, password.value)
+    const { email, password } = event.target.elements;
+    console.log(email.value, password.value);
     await signup(email.value, password.value);
-    history.push("/")
+    history.push('/');
   };
 
   return (
@@ -81,8 +80,8 @@ const SignUp = ({ history }) => {
             fullWidth
             id="email"
             label="Email Address"
-              name="email"
-              type="email"
+            name="email"
+            type="email"
             autoComplete="email"
             autoFocus
           />
@@ -97,33 +96,26 @@ const SignUp = ({ history }) => {
             type="password"
             id="password"
             autoComplete="current-password"
-            />
-            {/* <FormControlLabel
+          />
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
-            {/* <button type="submit">Sign Up</button> */}
-            <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            >
+          {/* <button type="submit">Sign Up</button> */}
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Sign Up
-            </Button>
-              <Grid container>
-                <Grid item>
-                  <Link to="/login" variant="body2">
-                    {"Already have an account?  Log In"}
-                  </Link>
-                </Grid>
-              </Grid>
-              </form>
-        </div>
+          </Button>
+          <Grid container>
+            <Grid item>
+              <Link to="/login" variant="body2">
+                {'Already have an account?  Log In'}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
     </Container>
   );
 };
 
 export default withRouter(SignUp);
-
