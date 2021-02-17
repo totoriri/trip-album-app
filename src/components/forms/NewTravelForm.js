@@ -1,19 +1,12 @@
-import React,{useState,useContext,useEffect} from "react"
+import React,{useState,useContext} from "react"
 import { app } from "../../base"
 import { AuthContext } from "../../context/AuthContext"
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from "react-router-dom"
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
 import { defaultQuestions } from "../../DefaultQuestions"
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -57,9 +50,8 @@ const NewTravelForm = ({ history }) => {
         isComplete: false,
         createdAt: new Date(),
         name: travelName,
-        // selectedQuestions:selectedQuestions
+        selectedQuestions:selectedQuestions
       })
-      travelRef.
       setTravelName("")
       history.push("/")
     }

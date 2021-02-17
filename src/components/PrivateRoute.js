@@ -7,7 +7,6 @@ const PrivateRoute = ({ component: RouteComponent, ...options }) => {
   console.log({ ...options })
   const { currentUser } = useContext(AuthContext);
   const Component = currentUser ? RouteComponent : Login;
-  // return <Route {...options} component={Component} />;
   return <Route {...options} render={() => <Component {...options} />}/>
 };
 

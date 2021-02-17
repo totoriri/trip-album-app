@@ -1,39 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link,useHistory } from "react-router-dom";
-import { NewPhotoForm } from "../components/forms/NewPhotoForm";
+// import { NewPhotoForm } from "../components/forms/NewPhotoForm";
 import { app } from "../base";
 
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid'
-import Card from '@material-ui/core/Card'
-import CardMedia from '@material-ui/core/CardMedia'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid'
+// import Card from '@material-ui/core/Card'
+// import CardMedia from '@material-ui/core/CardMedia'
+// import CssBaseline from '@material-ui/core/CssBaseline';
+// import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
+// import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
+// import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
+// import PersonPinIcon from '@material-ui/icons/PersonPin';
 import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+// import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+// import ThumbDown from '@material-ui/icons/ThumbDown';
+// import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import { defaultQuestions } from "../DefaultQuestions"
-import CardHeader from '@material-ui/core/CardHeader';
-import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import clsx from 'clsx';
-import Collapse from '@material-ui/core/Collapse';
-import ModalForm from "../components/forms/ModalForm"
+// import { defaultQuestions } from "../DefaultQuestions"
+// import CardHeader from '@material-ui/core/CardHeader';
+// import Avatar from '@material-ui/core/Avatar';
+// import IconButton from '@material-ui/core/IconButton';
+// import MoreVertIcon from '@material-ui/icons/MoreVert';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardActions from '@material-ui/core/CardActions';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import clsx from 'clsx';
+// import Collapse from '@material-ui/core/Collapse';
+// import ModalForm from "../components/forms/ModalForm"
 import QuestionCard from "../components/cards/QuestionCard"
 
 
@@ -121,7 +121,6 @@ function a11yProps(index) {
     setExpanded(!expanded);
   };
 
-  // パスと合致したルートの情報が収められたmatchオブジェクトを参照するuseRouteMatch()
   const match = useRouteMatch("/travels/:travel");
   const { travel } = match.params;
   console.log(match)
@@ -140,7 +139,6 @@ function a11yProps(index) {
             setImages(doc.data().images || [])
             setTravelName(doc.data().name || []);
         } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
         }
 
@@ -201,7 +199,6 @@ function a11yProps(index) {
         <ScrollableTabsButtonPrevent/>
       </section>
       <footer className={classes.footer}>
-        {/* <NewPhotoButton history={history} currentTravel={travel}/> */}
       </footer>
       </Container>
   );

@@ -23,11 +23,6 @@ export const AuthProvider = ({ children }) => {
     try {
       console.log(email,password)
       await auth.createUserWithEmailAndPassword(email, password)
-      // db.collection("users").doc(currentUser.uid).set({
-      //   username:username,
-      //   uid:currentUser.uid,
-      //   createAt: new Date()
-      // })
     } catch (error) {
       alert(error)
     }
@@ -46,18 +41,6 @@ export const AuthProvider = ({ children }) => {
       await auth.onAuthStateChanged(user => setCurrentUser(user));
     })()
   }, [])
-
-  // useEffect(() => {
-  //   if (currentUser !== null) {
-  //     (async() => {
-  //       db.collection("users").doc(currentUser.uid).set({
-  //         // username:username,
-  //         uid:currentUser.uid,
-  //         createAt: new Date()
-  //       })
-  //     })()
-  //   }
-  // },[currentUser])
 
   return (
     <AuthContext.Provider value={{login,signup,logout,currentUser}}>

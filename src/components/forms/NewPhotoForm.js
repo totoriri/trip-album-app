@@ -56,17 +56,11 @@ export const NewPhotoForm = ({history,location}) => {
     // history.push(`/travels/${currentTravel}`)
   }
 
-  // useEffect( () => {
-  //   (async() => {
 
-  //   })()
-  // }, [])
 
   return (
     <Container component="main" maxWidth="xs" className={classes.form}>
       <CssBaseline />
-    {/* <input type="file" onChange={onFileChange}/> */}
-    {/* <button onClick={onUpload}>Upload image</button> */}
       <TextField
         variant="outlined"
         onChange={onFileChange}
@@ -74,7 +68,6 @@ export const NewPhotoForm = ({history,location}) => {
             required
             fullWidth
             name="file"
-            // label="File"
             type="file"
             id="file"
             />

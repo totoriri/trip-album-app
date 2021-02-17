@@ -6,11 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-// import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,7 +43,6 @@ const Login = ({ history }) => {
     event.preventDefault();
     const { email, password } = event.target.elements;
     login(email.value, password.value);
-    // history.push("/")
   };
 
   return (
@@ -59,7 +54,6 @@ const Login = ({ history }) => {
         </Avatar>
       <Typography component="h1" variant="h5">Log in</Typography>
       <form onSubmit={handleSubmit} className={classes.form}>
-          {/* <input name="email" type="email" placeholder="Email" /> */}
           <TextField
             variant="outlined"
             margin="normal"
@@ -72,7 +66,6 @@ const Login = ({ history }) => {
             autoComplete="email"
             autoFocus
           />
-          {/* <input name="password" type="password" placeholder="Password" /> */}
           <TextField
             variant="outlined"
             margin="normal"
@@ -84,7 +77,6 @@ const Login = ({ history }) => {
             id="password"
             autoComplete="current-password"
             />
-          {/* <button type="submit">Log in</button> */}
           <Button
             type="submit"
             fullWidth
@@ -93,8 +85,7 @@ const Login = ({ history }) => {
             className={classes.submit}
             >
             Log In
-            </Button>
-          {/* <Link to="/signup">Go to signup page</Link> */}
+          </Button>
           <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

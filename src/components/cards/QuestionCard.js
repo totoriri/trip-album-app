@@ -1,31 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useRouteMatch, Link,useHistory } from "react-router-dom";
-import { NewPhotoForm } from "../forms/NewPhotoForm";
-// import { app } from "../base";
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
-import Box from '@material-ui/core/Box';
-import { defaultQuestions } from "../../DefaultQuestions"
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -49,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop:theme.spacing(5)
   },
   root: {
-    // flexGrow: 1,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
     justifyContent: "center",
@@ -112,7 +91,6 @@ const QuestionCard = ({item,travel}) => {
                         <MoreVertIcon />
                       </IconButton>
                     }
-                      // title={item.title}
                       title={
                       <Typography gutterBottom variant="h5" component="h2">
                         {item.title}
@@ -125,15 +103,6 @@ const QuestionCard = ({item,travel}) => {
                     title="Paella dish"
                   />
                   <CardActions disableSpacing>
-                  {/* <StyledRating
-                    name="customized-color"
-                    defaultValue={0}
-                        onChange={onRatingChange}
-                    getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                    precision={1}
-                    icon={<FavoriteIcon fontSize="inherit" />}
-                    max={1}
-                  /> */}
                   <StyledRating
                     name={item.title}
                     defaultValue={0}

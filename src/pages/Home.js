@@ -6,11 +6,6 @@ import {AuthContext} from "../context/AuthContext"
 import Container from "@material-ui/core/Container"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import { makeStyles } from "@material-ui/core/styles"
-import Typography from "@material-ui/core/Typography"
-import Grid from "@material-ui/core/Grid"
-import Card from "@material-ui/core/Card"
-import CardMedia from "@material-ui/core/CardMedia"
-import CardContent from "@material-ui/core/CardContent"
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Img from "../assets/img/homeTop.png"
 import Button from '@material-ui/core/Button';
@@ -41,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     height: 200,
-    // width: 400,
     flex: "1 auto"
   },
   details: {
@@ -58,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     width: "300px",
     height: "80px",
-    // position: "relative"
   },
 }))
 

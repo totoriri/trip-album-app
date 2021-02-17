@@ -1,9 +1,7 @@
-import React, {useState,useEffect,useRouteMatch,useContext} from 'react'
-import firebase from 'firebase'
+import React, {useState} from 'react'
 import { app } from '../../base'
 import { withRouter } from "react-router-dom"
 
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
@@ -47,19 +45,9 @@ export const UserImgForm = ({currentUser,history,location}) => {
     }
   }
 
-  // useEffect(() => {
-  //   (async () => {
-  //     await db.collection("users").doc(currentUser.uid).get((doc)=>setUserInformation(doc))
-  //   })()
-  // })
-
-
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {/* <input type="file" onChange={onFileChange}/> */}
-      {/* <button onClick={onUpload}>Upload image</button> */}
       <p>Form for userImg</p>
       <TextField
         variant="outlined"
@@ -68,7 +56,6 @@ export const UserImgForm = ({currentUser,history,location}) => {
             required
             fullWidth
             name="file"
-            // label="File"
             type="file"
             id="file"
             />

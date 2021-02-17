@@ -90,19 +90,19 @@ export default function TransitionsModal({travel}) {
 
 
   const onUpload = async () => {
-    // const storageRef = storage.ref()
-    // if (file) {
-    //   const fileRef = storageRef.child(file.name)
-    //   await fileRef.put(file)
-    //   db.collection("travels").doc(travel).update({
-    //     images: firebase.firestore.FieldValue.arrayUnion({
-    //       name: file.name,
-    //       url: await fileRef.getDownloadURL()
-    //     })
-    //   })
-    // }else{
-    //   return;
-    // }
+    const storageRef = storage.ref()
+    if (file) {
+      const fileRef = storageRef.child(file.name)
+      await fileRef.put(file)
+      db.collection("travels").doc(travel).update({
+        images: firebase.firestore.FieldValue.arrayUnion({
+          name: file.name,
+          url: await fileRef.getDownloadURL()
+        })
+      })
+    }else{
+      return;
+    }
     console.log(file)
     console.log(answerText)
     // history.push(`/travels/${currentTravel}`)
