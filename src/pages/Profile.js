@@ -2,8 +2,8 @@ import React,{useState,useEffect,useContext} from 'react'
 import { AuthContext } from "../context/AuthContext"
 import DefaultImg from "../assets/img/candy.jpg"
 import { makeStyles } from "@material-ui/core/styles"
-import NewPhotoForm from "./forms/NewPhotoForm"
-import UserImgForm from "./forms/UserImgForm"
+import NewPhotoForm from "../components/forms/NewPhotoForm"
+import UserImgForm from "../components/forms/UserImgForm"
 
 
 const useStyles = makeStyles((theme) => ({

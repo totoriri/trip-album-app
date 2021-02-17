@@ -14,7 +14,7 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { defaultQuestions } from "../DefaultQuestions"
+import { defaultQuestions } from "../../DefaultQuestions"
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const db = app.firestore();
@@ -50,15 +50,16 @@ const NewTravelForm = ({ history }) => {
   }
 
 
-  const onTravelCreate = () => {
+  const onTravelCreate = async() => {
     if (travelName) {
-      db.collection("travels").add({
+      const travelRef = await db.collection("travels").add({
         uid: currentUser.uid,
         isComplete: false,
         createdAt: new Date(),
         name: travelName,
-        selectedQuestions:selectedQuestions
+        // selectedQuestions:selectedQuestions
       })
+      travelRef.
       setTravelName("")
       history.push("/")
     }

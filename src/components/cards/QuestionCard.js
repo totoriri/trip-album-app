@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouteMatch, Link,useHistory } from "react-router-dom";
-import { NewPhotoForm } from "../../pages/forms/NewPhotoForm";
+import { NewPhotoForm } from "../forms/NewPhotoForm";
 // import { app } from "../base";
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
@@ -25,7 +25,7 @@ import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
 import ThumbDown from '@material-ui/icons/ThumbDown';
 import ThumbUp from '@material-ui/icons/ThumbUp';
 import Box from '@material-ui/core/Box';
-import { defaultQuestions } from "../../pages/DefaultQuestions"
+import { defaultQuestions } from "../../DefaultQuestions"
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
@@ -35,7 +35,7 @@ import CardActions from '@material-ui/core/CardActions';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import Collapse from '@material-ui/core/Collapse';
-import ModalForm from "../modals/ModalForm"
+import ModalForm from "../forms/ModalForm"
 
 const useStyles = makeStyles((theme) => ({
   paper: {

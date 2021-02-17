@@ -8,8 +8,8 @@ import SignUp from "./pages/SignUp";
 import Header from "./components/header/Header.js"
 import Profile from "./pages/Profile"
 import { app } from "./base"
-import NewTravelForm from "./pages/forms/NewTravelForm"
-import NewPhotoForm from "./pages/forms/NewPhotoForm"
+import NewTravelForm from "./components/forms/NewTravelForm"
+import NewPhotoForm from "./components/forms/NewPhotoForm"
 import Travel from "./pages/Travel"
 import { AuthContext } from "./context/AuthContext"
 
