@@ -63,15 +63,15 @@ const QuestionCard = ({ item, travel }) => {
   const [images, setImages] = useState([]);
   const [travelName, setTravelName] = useState('');
   const [selectedQuestions, setSelectedQuestions] = useState([]);
-  const [isRated, setIsRated] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  const onRatingChange = () => {
-    setIsRated(!isRated);
-    console.log(isRated);
+  const onFavoriteChange = () => {
+    setIsFavorite(!isFavorite);
+    console.log(isFavorite);
   };
 
   return (
@@ -95,7 +95,7 @@ const QuestionCard = ({ item, travel }) => {
       />
       <CardMedia className={classes.media} image="/static/images/cards/paella.jpg" title="Paella dish" />
       <CardActions disableSpacing>
-        <StyledRating
+        {/* <StyledRating
           name={item.title}
           defaultValue={0}
           onChange={onRatingChange}
@@ -103,7 +103,15 @@ const QuestionCard = ({ item, travel }) => {
           precision={1}
           icon={<FavoriteIcon fontSize="inherit" />}
           max={1}
-        />
+        /> */}
+        <IconButton
+          name={item.title}
+          value={isFavorite}
+          color={isFavorite ? 'secondary' : 'default'}
+          onClick={onFavoriteChange}
+        >
+          <FavoriteIcon fontSize="inherit" />
+        </IconButton>
 
         <IconButton
           className={clsx(classes.expand, {
