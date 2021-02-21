@@ -53,13 +53,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal({ travel }) {
+export default function TransitionsModal({ travel, index }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [currentTravel, setCurrentTravel] = useState([]);
+  // const [modalIndex, setModalIndex] = useState(null)
 
   const handleOpen = () => {
     setOpen(true);
+    // setModalIndex()
   };
 
   const handleClose = () => {
@@ -68,7 +70,7 @@ export default function TransitionsModal({ travel }) {
 
   const [file, setFile] = useState(null);
   const [answerText, setAnswerText] = useState('');
-
+  console.log(index);
   // const match = useRouteMatch("/travels/:travel");
   // console.log(match)
   // const { travel } = match.params;

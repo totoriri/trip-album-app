@@ -6,6 +6,7 @@ import Login from '../pages/Login';
 const PrivateRoute = ({ component: RouteComponent, ...options }) => {
   console.log({ ...options });
   const { currentUser } = useContext(AuthContext);
+  console.log(currentUser);
   const Component = currentUser ? RouteComponent : Login;
   return <Route {...options} render={() => <Component {...options} />} />;
 };
