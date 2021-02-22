@@ -58,11 +58,11 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-const QuestionCard = ({ item, travel }) => {
+const QuestionCard = ({ item, travel, index }) => {
   const classes = useStyles();
   const [images, setImages] = useState([]);
   const [travelName, setTravelName] = useState('');
-  const [selectedQuestions, setSelectedQuestions] = useState([]);
+  // const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
@@ -112,7 +112,6 @@ const QuestionCard = ({ item, travel }) => {
         >
           <FavoriteIcon fontSize="inherit" />
         </IconButton>
-
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -126,7 +125,7 @@ const QuestionCard = ({ item, travel }) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <ModalForm travel={travel} />
+          <ModalForm travel={travel} index={index} />
         </CardContent>
       </Collapse>
     </Card>

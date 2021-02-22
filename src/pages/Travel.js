@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 // import Card from '@material-ui/core/Card'
 // import CardMedia from '@material-ui/core/CardMedia'
 // import CssBaseline from '@material-ui/core/CssBaseline';
-// import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper';
 import PropTypes from 'prop-types';
 // import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -148,7 +148,7 @@ const Travels = () => {
 
     return (
       <div className={classes.root}>
-        <paper square>
+        <Paper square>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -160,11 +160,14 @@ const Travels = () => {
             <Tab icon={<HelpIcon />} aria-label="phone" {...a11yProps(0)} />
             <Tab icon={<FavoriteIcon />} aria-label="favorite" {...a11yProps(1)} />
           </Tabs>
-        </paper>
+        </Paper>
         <TabPanel value={value} index={0}>
           {selectedQuestions.map((item, index) => {
-            let Index = index + 1;
-            return <QuestionCard item={item} travel={travel} />;
+            return (
+              <div key={item.type}>
+                <QuestionCard item={item} index={index} travel={travel} />
+              </div>
+            );
           })}
         </TabPanel>
         <TabPanel value={value} index={1}></TabPanel>
